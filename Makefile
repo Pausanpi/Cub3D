@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcuevas- <lcuevas-@student.42malaga.c      +#+  +:+       +#+         #
+#    By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/19 12:51:14 by lcuevas-          #+#    #+#              #
-#    Updated: 2024/12/19 12:51:15 by lcuevas-         ###   ########.fr        #
+#    Updated: 2025/01/28 12:23:02 by pausanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-MLX42_PATH = libs/MLX42
+MLX42_PATH = MLX42
 MLX42 = $(MLX42_PATH)/build/libmlx42.a
 #MLX42_BUILD_PATH = $(MLX42_PATH)/build
 

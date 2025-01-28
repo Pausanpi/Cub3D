@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcuevas- <lcuevas-@student.42malaga.c      +#+  +:+       +#+        */
+/*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2024/12/19 11:33:39 by lcuevas-         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:30:33 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*---------------------------------   LIBS   ---------------------------------*/
 # include "libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 # include <fcntl.h>
 # include <limits.h>
