@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcuevas- <lcuevas-@student.42malaga.c      +#+  +:+       +#+        */
+/*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 12:56:21 by lcuevas-          #+#    #+#             */
-/*   Updated: 2024/12/19 12:56:22 by lcuevas-         ###   ########.fr       */
+/*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
+/*   Updated: 2025/01/29 12:42:04 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,83 +60,94 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(f->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(f->mlx);
 	if (mlx_is_key_down(f->mlx, MLX_KEY_W))
-		f->playa->pos->x += 0.05;
+		f->player->pos->x += 0.05;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_S))
-		f->playa->pos->x -= 0.05;
+		f->player->pos->x -= 0.05;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_D))
-		f->playa->pos->y += 0.05;
+		f->player->pos->y += 0.05;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_A))
-		f->playa->pos->y -= 0.05;
+		f->player->pos->y -= 0.05;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_E))
-		f->playa->angle += 0.05;
+		f->player->angle += 0.05;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_Q))
-		f->playa->angle -= 0.05;
+		f->player->angle -= 0.05;
 	i = 0;
 	while (i < 1080)
 	{
 		ft_rayete (f, i);
-		ft_paint_walls(f, (WALL_H - (f->ray->length) * 40), i); // habia uqe a;adirle datos de colision
+		ft_paint_walls(f, (WALL_H - (f->ray->length) * 40), i); // habia uqe añadirle datos de colision
 		i += 1;
 	}
 }
 
-void	ft_init_f(t_data *f)
-{
-	mlx_set_setting(MLX_STRETCH_IMAGE, true); //de momento no ase farta hay que mirar que hace
-	f->mlx = mlx_init(WIDTH, HEIGHT, "VENTANA", false);
-	if (!f->mlx)
-		ft_error(MLX_ERROR, f);
-//	if (ft_check_monitor(info->mlx) == 0) //esto es de elisa que no se que sera
-//		return (-1);
-//	mlx_set_window_limit(f->mlx, 500, 500, 2560, 1440); //esto va junto con el estirar verdad?
-// nu ze si la imagen me est'a haciendo algo ahora la verdat
-	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
-	f->prueba = 0;
-	f->playa->angle = 0;
-	if (!f->img || (mlx_image_to_window(f->mlx, f->img, 0, 0) < 0))
-		ft_error(IMG_ERROR, f);
-}
-
 void	ft_openwindow(t_data *f)
 {
-	ft_init_f(f);
 	mlx_loop_hook(f->mlx, &ft_hook, f);
 	mlx_loop(f->mlx);
 	mlx_delete_image(f->mlx, f->img);
 	mlx_terminate(f->mlx);
 }
 
-int	main(void)
+static void init_struct(t_data *data)
 {
-	t_data	data;
-	int		i;
+	
+		
+    data->fd = 0;
+    data->line = NULL;
+    data->texture_count = 0;
+    data->char_pos = 0;
+	data->height_map = 0;
+    data->width_map = 0;
 
-	data.ray = malloc(sizeof(t_ray) + 1);
-	data.map = malloc(10 * sizeof(char *) + 1);
-	data.playa = malloc(1 * sizeof(t_player));
-	data.playa->pos = malloc(512);
-	data.playa->pos->x = 6.5;
-	data.playa->pos->y = 6.5;
-	i = -1;
-	while (data.map[++i])
-		data.map[1] = ft_calloc(11, 1);
-	data.map[0] = "1111111111";
-	data.map[1] = "1000000001";
-	data.map[2] = "1011100001";
-	data.map[3] = "1010100001";
-	data.map[4] = "1011100001";
-	data.map[5] = "1000000001";
-	data.map[6] = "1000000001";
-	data.map[7] = "1000000001";
-	data.map[8] = "1100000001";
-	data.map[9] = "1111111111";
-	data.map[10] = 0;
-	i = -1;
+	data->player = malloc(sizeof(t_player));
+	data->player->pos = malloc(sizeof(t_coordinate));
+	
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "VENTANA", false);
+	if (!data->mlx)
+		ft_error(MLX_ERROR, data);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->player->angle = 0;
+	if (!data->img || (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0))
+		ft_error(IMG_ERROR, data);
+
+	data->ray = malloc(sizeof(t_ray));
+	
+}
+
+static int check_extension(char *file)
+{
+    int i;
+
+    i = 0;
+    while (file[i])
+        i++;
+    if (file[i - 1] != 'b' || file[i - 2] != 'u' || file[i - 3] != 'c' || file[i - 4] != '.')
+        return (1);
+    return (0);
+}
+
+int main(int argc, char **argv)
+{
+    t_data data;
+
+    if (argc != 2)
+        return (printf("Error: Invalid number of arguments\n"), 1);
+    if (check_extension(argv[1]) == 1)
+        return (printf("Error: Invalid file extension\n"), 1);
+    init_struct(&data);
+    if (parser(&data, argv[1]) == 1)
+	{
+        return (1);
+	}
+
+	int i = 0;
+	while (data.map[i])
+	{
+		printf("%s\n", data.map[i]);
+		i++;
+	}
+
 	ft_openwindow(&data);
 	return (0);
 }
-
-
-
-
-//tendre segmentos de  (π/2)/x donde x son los huevos (rayos - 1)

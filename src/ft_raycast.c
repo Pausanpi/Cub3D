@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcuevas- <lcuevas-@student.42malaga.c      +#+  +:+       +#+        */
+/*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:56:21 by lcuevas-          #+#    #+#             */
-/*   Updated: 2024/12/19 12:56:22 by lcuevas-         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:52:14 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ void	ft_traverse_map(t_data *data)
 	{
 		if (fabs(data->ray->first_x) < fabs(data->ray->first_y)) // posible necesidad de epsilon
 		{
-			data->ray->length = data->ray->first_x * cos(data->ray->angle - (data->playa->angle)); // era hacer esto primero, loco.
+			data->ray->length = data->ray->first_x * cos(data->ray->angle - (data->player->angle)); // era hacer esto primero, loco.
 			data->ray->first_x += data->ray->delta_x;
 			map_x += data->ray->x_sign;
 			data->ray->last_cross = 0;
 		}
 		else
 		{
-			data->ray->length = data->ray->first_y * cos(data->ray->angle - data->playa->angle);
+			data->ray->length = data->ray->first_y * cos(data->ray->angle - data->player->angle);
 			data->ray->first_y += data->ray->delta_y;
 			map_y += data->ray->y_sign;
 			data->ray->last_cross = 1;
 		}
 		printf("LENGTH INTRA %.2f | COORDINATES %i %i | X Y %.2f %.2f | PPOS %.2f %.2f || Last %i \n",
 			data->ray->length, map_x, map_y, data->ray->first_x,
-			data->ray->first_y, data->playa->pos->x, data->playa->pos->y, data->ray->last_cross);
+			data->ray->first_y, data->player->pos->x, data->player->pos->y, data->ray->last_cross);
 	}
 }
 
@@ -69,10 +69,10 @@ void	ft_ray_direction(t_data *data)
 void	ft_init_ray(t_data *data, int i)
 {
 	data->ray->deltaang = (PI / 2) / (WIDTH - 1);
-	data->ray->angle = data->playa->angle -(PI/4) + (i * data->ray->deltaang);
+	data->ray->angle = data->player->angle -(PI/4) + (i * data->ray->deltaang);
 	data->ray->dir.x = cos(data->ray->angle);
 	data->ray->dir.y = sin(data->ray->angle);
-	data->ray->origin = *data->playa->pos;
+	data->ray->origin = *data->player->pos;
 	data->ray->delta_x = fabs(1 / data->ray->dir.x);
 	data->ray->delta_y = fabs(1 / data->ray->dir.y);
 }

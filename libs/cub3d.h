@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/01/28 12:30:33 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:46:56 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,25 @@ typedef struct s_data
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_ray		*ray;
-	t_player	*playa;	
+	t_player	*player;	
 	char		**map;
+	int			fd;
+	char		*line;
+	int			texture_count;
+	int			char_pos;
+	char		orientation;
+	int			height_map;
+	int			width_map;
+
 	int			prueba;
 }	t_data;
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
 // main file
-int		main(void);
+int 	main(int argc, char **argv);
 void	ft_openwindow(t_data *f);
-void	ft_init_f(t_data *f);
+//void	ft_init_f(t_data *f);
 void	ft_hook(void *param);
 void	ft_paint_walls(t_data *f, float wall, int col);
 void	ft_error(int i, t_data *data);
@@ -125,14 +133,15 @@ void	ft_traverse_map(t_data *data);
 void	ft_ray_direction(t_data *data);
 void	ft_init_ray(t_data *data, int i);
 
-// aux file
+// map_checker
+int check_textures(t_data *data, char **texture);
+int	save_map(t_data *data);
+int check_map(t_data *data);
+int check_first_line(t_data *data);
+int check_chars(t_data *data);
+int fill_map(t_data *data);
 
-// error file
 
-// fractals file
-
-// color file
-
-//hook file
+int parser(t_data *data, char *file);
 
 #endif

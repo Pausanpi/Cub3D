@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_main_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcuevas- <lcuevas-@student.42malaga.c      +#+  +:+       +#+        */
+/*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:56:21 by lcuevas-          #+#    #+#             */
-/*   Updated: 2024/12/19 12:56:22 by lcuevas-         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:47:29 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_rayete(t_data data, int i)
 	data.ray->angle = (0 - PI / 2) + (i * data.ray->deltaang); 
 	data.ray->dir.x = cos(data.ray->angle);
 	data.ray->dir.y = sin(data.ray->angle);
-	data.ray->origin = *data.playa->pos;
+	data.ray->origin = *data.player->pos;
 
 	// Incremental steps for grid traversal
 	double	delta_x = fabs(1 / data.ray->dir.x);
@@ -65,10 +65,10 @@ int	main(void)
 	int		i;
 
 	data.map = malloc(10 * sizeof(char *) + 1);
-	data.playa = malloc(1 * sizeof(t_player));
-	data.playa->pos = malloc(512);
-	data.playa->pos->x = 4.5;
-	data.playa->pos->y = 4.5;
+	data.player = malloc(1 * sizeof(t_player));
+	data.player->pos = malloc(512);
+	data.player->pos->x = 4.5;
+	data.player->pos->y = 4.5;
 	i = -1;
 	while (data.map[++i])
 		data.map[1] = ft_calloc(11, 1);

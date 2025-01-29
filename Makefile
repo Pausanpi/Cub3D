@@ -1,19 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/19 12:51:14 by lcuevas-          #+#    #+#              #
-#    Updated: 2025/01/28 12:23:02 by pausanch         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 RM = rm -rf
 
 MLX42_PATH = MLX42
@@ -25,8 +13,9 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 HEADERS = -I ./libs -I $(MLX42_PATH)/include/MLX42 -I $(LIBFT_PATH)
 
-SRCS =	src/ft_main.c\
-		src/ft_raycast.c\
+SRCS =	src/main.c \
+		src/ft_raycast.c \
+		src/parse.c src/map_checker.c \
 
 OBJS = $(SRCS:src/%.c=obj/%.o)
 
@@ -39,28 +28,37 @@ all : $(MLX42) $(LIBFT) $(NAME)
 # .SILENT: pa silenciar echos
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(HEADERS) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME) -lm
-#a;adido el -lm para linkear bien la libreria math y poder tener floor y ceiling y eso. Podriamos hacer las nuestras si no.
+	@echo "Linking $@..."
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(HEADERS) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME) -lm
+	@echo "\033[32mCompilation successful!\033[0m"
+#añadido el -lm para linkear bien la libreria math y poder tener floor y ceiling y eso. Podriamos hacer las nuestras si no.
 
 $(LIBFT):
-	make -C $(LIBFT_PATH)
+	@echo "Building libft..."
+	@make -s -C $(LIBFT_PATH)
 
 $(MLX42):
-	cmake $(MLX42_PATH) -B $(MLX42_PATH)/build && make -C $(MLX42_PATH)/build -j4
+	@echo "Building MLX42..."
+	@cmake $(MLX42_PATH) -B $(MLX42_PATH)/build >/dev/null 2>&1
+	@make -s -C $(MLX42_PATH)/build -j4 >/dev/null
 
 obj/%.o: src/%.c
-	mkdir -p obj
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
+	@mkdir -p obj
+	@echo "Compiling $<..."
+	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
 clean:
-	$(RM) obj
-	make -C $(LIBFT_PATH) clean
-	make -C $(MLX42_PATH)/build clean
+	@echo "Cleaning object files..."
+	@$(RM) obj
+	@make -s -C $(LIBFT_PATH) clean
+	@make -s -C $(MLX42_PATH)/build clean >/dev/null 2>&1
 
-fclean:
-	$(RM) obj $(NAME)
-	make -C $(LIBFT_PATH) fclean
-	$(RM) $(MLX42_PATH)/build
+fclean: clean
+	@echo "Cleaning executable..."
+	@$(RM) obj $(NAME)
+	@make -s -C $(LIBFT_PATH) fclean
+	@$(RM) $(MLX42_PATH)/build
+	@echo "\033[32mCleaning successful!\033[0m"
 
 re: fclean all
 

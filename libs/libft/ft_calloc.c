@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcuevas- <lcuevas-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 12:31:18 by lcuevas-          #+#    #+#             */
-/*   Updated: 2023/10/02 15:14:44 by lcuevas-         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:32:00 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,3 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(ret, count * size);
 	return (ret);
 }
-
-/*
-asigna espacio de memoria del size que toca y los llenas de 0 y devuevle puntero
-*/

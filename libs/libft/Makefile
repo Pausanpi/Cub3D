@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcuevas- <lcuevas-@student.42.fr>          +#+  +:+       +#+         #
+#    By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/16 10:18:18 by lcuevas-          #+#    #+#              #
-#    Updated: 2024/09/25 10:58:44 by lcuevas-         ###   ########.fr        #
+#    Updated: 2025/01/29 10:23:02 by pausanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,11 +92,11 @@ $(NAME): $(OBJS)
 
 clean:
 	@$(RM) $(OBJS)
-	@echo "limpiando objetos"
+#	@echo "limpiando objetos"
 
 fclean:
 	@$(RM) $(NAME) $(OBJS)
-	@echo "limpieza profunda"
+#	@echo "limpieza profunda"
 
 re: fclean all
 
