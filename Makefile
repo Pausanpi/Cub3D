@@ -1,7 +1,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 RM = rm -rf
 
 MLX42_PATH = MLX42
@@ -15,7 +15,7 @@ HEADERS = -I ./libs -I $(MLX42_PATH)/include/MLX42 -I $(LIBFT_PATH)
 
 SRCS =	src/main.c \
 		src/ft_raycast.c \
-		src/parse.c src/map_checker.c \
+		src/parse.c src/map_checker.c src/textures.c \
 
 OBJS = $(SRCS:src/%.c=obj/%.o)
 

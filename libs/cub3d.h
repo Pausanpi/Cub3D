@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/01/29 10:46:56 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:13:24 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,18 +101,22 @@ typedef struct s_ray
 
 typedef struct s_data
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_ray		*ray;
-	t_player	*player;	
-	char		**map;
-	int			fd;
-	char		*line;
-	int			texture_count;
-	int			char_pos;
-	char		orientation;
-	int			height_map;
-	int			width_map;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_ray			*ray;
+	t_player		*player;	
+	char			**map;
+	int				fd;
+	char			*line;
+	int				texture_count;
+	int				char_pos;
+	char			orientation;
+	int				height_map;
+	int				width_map;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*ea;
+	mlx_texture_t	*we;
 
 	int			prueba;
 }	t_data;
@@ -141,7 +145,10 @@ int check_first_line(t_data *data);
 int check_chars(t_data *data);
 int fill_map(t_data *data);
 
-
+// parse
 int parser(t_data *data, char *file);
+
+// textures
+void load_textures(t_data *data, char *textures);
 
 #endif

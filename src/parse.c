@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/28 12:48:24 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:15:44 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int parser(t_data *data, char *file)
     if (!data->line)
         return (printf("Error: Empty file\n"), 1);
     if (check_textures(data, &texture) == 1)
+	{
         return (1);
+	}
+	load_textures(data, texture);
     return (0);
 }
