@@ -6,11 +6,32 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/29 15:46:31 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:16:56 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub3d.h"
+
+int color_check(t_data data, char **text_walls)
+{
+	int i;
+	int j;
+	char *color;
+	
+	i = 3;
+
+	while (text_walls[i])
+	{
+		if (ft_strncmp(text_walls[i], "F ", 2))
+			data.floor = text_walls[i];
+		else if (ft_strncmp(text_walls[i], "C ", 2))
+			data.ceiling = text_walls[i];
+		else
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void load_textures(t_data *data, char *textures)
 {
@@ -19,7 +40,6 @@ void load_textures(t_data *data, char *textures)
 	int i;
 	int j;
 
-	(void)data;
 	text_walls = ft_split(textures, '\n');
 
 	path_text_walls = malloc(sizeof(char *) * 4);

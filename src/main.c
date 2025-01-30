@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/30 10:49:11 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:09:07 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	while (j < HEIGHT)
 	{
 		if (j < top)
-			mlx_put_pixel(f->img, col, j, (135<< 24 | 206 << 16 | 235 << 8 | 255)); // Cielo
+			mlx_put_pixel(f->img, col, j, (f->ceiling[0]<< 24 | f->ceiling[1] << 16 | f->ceiling[2] << 8 | 255)); // Cielo
 		else if (j > bot)
-			mlx_put_pixel(f->img, col, j, (42 << 24 | 42 << 16 | 42 << 8 | 255)); // Suelo
+			mlx_put_pixel(f->img, col, j, (f->floor[0] << 24 | f->floor[1] << 16 | f->floor[2] << 8 | 255)); // Suelo
 		else
 		{
 			// Mapear la coordenada y de la pantalla a la coordenada y de la textura
@@ -155,6 +155,9 @@ static void init_struct(t_data *data)
 	data->so = malloc(sizeof(mlx_texture_t));
 	data->ea = malloc(sizeof(mlx_texture_t));
 	data->we = malloc(sizeof(mlx_texture_t));
+	
+	data->ceiling = NULL;
+	data->floor = NULL;
 }
 
 static int check_extension(char *file)

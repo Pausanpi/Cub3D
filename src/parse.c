@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/29 15:15:44 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:02:11 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int parser(t_data *data, char *file)
 	{
         return (1);
 	}
-	load_textures(data, texture);
+	load_textures(data, texture); // habria que hacer un check de esto
     return (0);
 }
