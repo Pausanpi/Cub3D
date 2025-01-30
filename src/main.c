@@ -41,16 +41,16 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	if (f->ray->last_cross == 0)
 	{
 		if (f->ray->x_sign == 1)
-			current_texture = f->ea;
-		else
 			current_texture = f->we;
+		else
+			current_texture = f->ea;
 	}
 	else
 	{
 		if (f->ray->y_sign == 1)
-			current_texture = f->so;
-		else
 			current_texture = f->no;
+		else
+			current_texture = f->so;
 	}
 
 	// Calcular la coordenada x de la textura
@@ -95,22 +95,45 @@ void	ft_hook(void *param)
 {
 	t_data	*f;
 	int		i;
+	double	move_speed = 0.05;
+	double	strafe_speed = 0.05;
 
 	f = param;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(f->mlx);
+
+	// Move forward
 	if (mlx_is_key_down(f->mlx, MLX_KEY_W))
-		f->player->pos->x += 0.05;
+	{
+		f->player->pos->x += cos(f->player->angle) * move_speed;
+		f->player->pos->y += sin(f->player->angle) * move_speed;
+	}
+	// Move backward
 	if (mlx_is_key_down(f->mlx, MLX_KEY_S))
-		f->player->pos->x -= 0.05;
+	{
+		f->player->pos->x -= cos(f->player->angle) * move_speed;
+		f->player->pos->y -= sin(f->player->angle) * move_speed;
+	}
+	// Strafe right
 	if (mlx_is_key_down(f->mlx, MLX_KEY_D))
-		f->player->pos->y += 0.05;
+	{
+		f->player->pos->x += cos(f->player->angle + PI/2) * strafe_speed;
+		f->player->pos->y += sin(f->player->angle + PI/2) * strafe_speed;
+	}
+	// Strafe left
 	if (mlx_is_key_down(f->mlx, MLX_KEY_A))
-		f->player->pos->y -= 0.05;
+	{
+		f->player->pos->x += cos(f->player->angle - PI/2) * strafe_speed;
+		f->player->pos->y += sin(f->player->angle - PI/2) * strafe_speed;
+	}
+
+	// Rotate right
 	if (mlx_is_key_down(f->mlx, MLX_KEY_E))
 		f->player->angle += 0.05;
+	// Rotate left
 	if (mlx_is_key_down(f->mlx, MLX_KEY_Q))
 		f->player->angle -= 0.05;
+
 	i = 0;
 	while (i < 1080)
 	{
