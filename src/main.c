@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/29 17:13:38 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:49:11 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	while (j < HEIGHT)
 	{
 		if (j < top)
-			mlx_put_pixel(f->img, col, j, (255 << 24 | 135 << 16 | 206 << 8 | 235)); // Cielo
+			mlx_put_pixel(f->img, col, j, (135<< 24 | 206 << 16 | 235 << 8 | 255)); // Cielo
 		else if (j > bot)
-			mlx_put_pixel(f->img, col, j, (255 << 24 | 169 << 16 | 169 << 8 | 169)); // Suelo
+			mlx_put_pixel(f->img, col, j, (42 << 24 | 42 << 16 | 42 << 8 | 255)); // Suelo
 		else
 		{
 			// Mapear la coordenada y de la pantalla a la coordenada y de la textura
@@ -83,21 +83,7 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 				((int)tex_y * current_texture->width + (int)tex_x) * current_texture->bytes_per_pixel];
 			
 			// Crear el color RGBA
-			uint32_t color = (255 << 24) | (pixel[0] << 16) | (pixel[1] << 8) | pixel[2];
-			
-			// Aplicar sombreado basado en la distancia
-			float shade = 1.0f - (f->ray->length / 20.0f); // Ajusta el 30.0f según necesites
-			if (shade < 0.2f) shade = 0.2f;
-			
-			// Aplicar el sombreado al color
-			uint8_t r = (color >> 16) & 0xFF;
-			uint8_t g = (color >> 8) & 0xFF;
-			uint8_t b = color & 0xFF;
-			r = r * shade;
-			g = g * shade;
-			b = b * shade;
-			
-			color = (255 << 24) | (r << 16) | (g << 8) | b;
+			uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | 255;
 			
 			mlx_put_pixel(f->img, col, j, color);
 		}
@@ -129,7 +115,7 @@ void	ft_hook(void *param)
 	while (i < 1080)
 	{
 		ft_rayete (f, i);
-		ft_paint_walls(f, (WALL_H - (f->ray->length) * 30), i); // habia uqe añadirle datos de colision
+		ft_paint_walls(f, (WALL_H - (f->ray->length) * 50), i); // habia uqe añadirle datos de colision
 		i += 1;
 	}
 }
@@ -155,7 +141,7 @@ static void init_struct(t_data *data)
 	data->player->pos = malloc(sizeof(t_coordinate));
 	
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	data->mlx = mlx_init(WIDTH, HEIGHT, "VENTANA", false);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "CUBESITO", false);
 	if (!data->mlx)
 		ft_error(MLX_ERROR, data);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);

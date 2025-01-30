@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 12:56:21 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/01/29 17:13:44 by pausanch         ###   ########.fr       */
+/*   Created: 2025/01/30 10:52:27 by pausanch          #+#    #+#             */
+/*   Updated: 2025/01/30 10:52:34 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ void	ft_traverse_map(t_data *data)
 			map_y += data->ray->y_sign;
 			data->ray->last_cross = 1;
 		}
-		/* printf("LENGTH INTRA %.2f | COORDINATES %i %i | X Y %.2f %.2f | PPOS %.2f %.2f || Last %i \n",
-			data->ray->length, map_x, map_y, data->ray->first_x,
-			data->ray->first_y, data->player->pos->x, data->player->pos->y, data->ray->last_cross); */
 	}
 }
 
