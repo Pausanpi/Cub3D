@@ -28,6 +28,7 @@ all : $(MLX42) $(LIBFT) $(NAME)
 # .SILENT: pa silenciar echos
 
 $(NAME): $(OBJS)
+	@clear
 	@echo "Linking $@..."
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(HEADERS) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME) -lm
 	@echo "\033[32mCompilation successful!\033[0m"
@@ -48,6 +49,7 @@ obj/%.o: src/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
 clean:
+	@clear
 	@echo "Cleaning object files..."
 	@$(RM) obj
 	@make -s -C $(LIBFT_PATH) clean

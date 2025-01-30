@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/30 11:09:07 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:24:09 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,8 @@ static void init_struct(t_data *data)
 	data->ea = malloc(sizeof(mlx_texture_t));
 	data->we = malloc(sizeof(mlx_texture_t));
 	
-	data->ceiling = NULL;
-	data->floor = NULL;
+	data->ceiling = malloc(sizeof(uint32_t) * 3);
+	data->floor = malloc(sizeof(uint32_t) * 3);
 }
 
 static int check_extension(char *file)
@@ -207,13 +207,6 @@ int main(int argc, char **argv)
 	{
         return (1);
 	}
-
-/* 	int i = 0;
-	while (data.map[i])
-	{
-		printf("%s\n", data.map[i]);
-		i++;
-	} */
 
 	ft_openwindow(&data);
 	return (0);
