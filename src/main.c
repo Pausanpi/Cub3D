@@ -126,7 +126,6 @@ void	ft_hook(void *param)
 		f->player->pos->x += cos(f->player->angle - PI/2) * strafe_speed;
 		f->player->pos->y += sin(f->player->angle - PI/2) * strafe_speed;
 	}
-
 	// Rotate right
 	if (mlx_is_key_down(f->mlx, MLX_KEY_E))
 		f->player->angle += 0.05;
@@ -138,7 +137,7 @@ void	ft_hook(void *param)
 	while (i < 1080)
 	{
 		ft_rayete (f, i);
-		ft_paint_walls(f, (WALL_H - (f->ray->length) * 50), i); // habia uqe añadirle datos de colision
+		ft_paint_walls(f, ((WALL_H * 0.7) / ((f->ray->length) * (cos(f->ray->angle - f->player->angle)) * 1)), i);
 		i += 1;
 	}
 }
