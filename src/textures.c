@@ -6,68 +6,96 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/30 15:30:13 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:02:50 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub3d.h"
 
-char *ft_strncpy(char *dest, const char *src, size_t pos) {
-    size_t i;
-    size_t j;
+void initialize_colors(t_data *data)
+{
+    int	i;
 
 	i = 0;
+	while (i < 3)
+	{
+		data->ceiling[i] = 0;
+		data->floor[i] = 0;
+		i++;
+	}
+}
+
+int validate_and_assign_colors(uint32_t *color_array, char **rgb)
+{
+    int j;
+	int color_val;
+
 	j = 0;
-    while (i < pos && src[i] != '\0') {
-        i++;
-    }
-    while (src[i] != '\0') {
-        dest[j] = src[i];
-        i++;
+    while (j < 3)
+    {
+        color_val = ft_atoi(rgb[j]);
+        if (color_val < 0 || color_val > 255)
+        {
+            while (rgb[j])
+            {
+                free(rgb[j]);
+                j++;
+            }
+            free(rgb);
+            return (1);
+        }
+        color_array[j] = color_val;
         j++;
     }
-    dest[j] = '\0';
-    return dest;
+    return (0);
+}
+
+void free_rgb_array(char **rgb)
+{
+    int j = 0;
+    while (rgb[j])
+    {
+        free(rgb[j]);
+        j++;
+    }
+    free(rgb);
+}
+
+int process_color_line(char *line, uint32_t *color_array)
+{
+    char **rgb = ft_split(line + 2, ',');
+    if (!rgb)
+        return (1);
+    
+    if (validate_and_assign_colors(color_array, rgb))
+        return (1);
+    
+    free_rgb_array(rgb);
+    return (0);
 }
 
 int color_check(t_data *data, char **text_walls)
 {
-	int i;
-	int j;
-	char *color;
-	char **rgb;
-
-	i = 3;
-	while (text_walls[i])
-	{
-		if (ft_strncmp(text_walls[i], "C ", 2))  // por alguna razon se guardan al reves
-		{
-			color = ft_strncpy(color, text_walls[i], 2);
-			rgb = ft_split(color, ',');
-			j = 0;
-			while (rgb[j])
-			{
-				data->floor[j] = ft_atoi(rgb[j]);
-				j++;
-			}
-		}
-		else if (ft_strncmp(text_walls[i], "F ", 2))
-		{
-			color = ft_strncpy(color, text_walls[i], 2);
-			rgb = ft_split(color, ',');
-			j = 0;
-			while (rgb[j])
-			{
-				data->ceiling[j] = ft_atoi(rgb[j]);
-				j++;
-			}
-		}
-		else
-			return (1);
-		i++;
-	}
-	
-	return (0);
+    initialize_colors(data);
+    int i = 3;
+    while (text_walls[i])
+    {
+        while (text_walls[i][0] == ' ')
+            text_walls[i]++;
+        
+        if (text_walls[i][0] == 'C' && text_walls[i][1] == ' ')
+        {
+            if (process_color_line(text_walls[i], data->ceiling))
+                return (1);
+        }
+        else if (text_walls[i][0] == 'F' && text_walls[i][1] == ' ')
+        {
+            if (process_color_line(text_walls[i], data->floor))
+                return (1);
+        }
+        i++;
+    }
+    return (0);
 }
 
 void load_textures(t_data *data, char *textures)
