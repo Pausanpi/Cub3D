@@ -12,7 +12,25 @@
 
 #include "../libs/cub3d.h"
 
-int		key_hook(t_data *data)
+void	key_hook2(t_data *data)
+{
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
+	{
+		data->player->pos->x += cos(data->player->angle + PI / 2) * 0.05;
+		data->player->pos->y += sin(data->player->angle + PI / 2) * 0.05;
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
+	{
+		data->player->pos->x += cos(data->player->angle - PI / 2) * 0.05;
+		data->player->pos->y += sin(data->player->angle - PI / 2) * 0.05;
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		data->player->angle += 0.05;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		data->player->angle -= 0.05;
+}
+
+int	key_hook(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
@@ -30,19 +48,6 @@ int		key_hook(t_data *data)
 		data->player->pos->x -= cos(data->player->angle) * 0.05;
 		data->player->pos->y -= sin(data->player->angle) * 0.05;
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-	{
-		data->player->pos->x += cos(data->player->angle + PI/2) * 0.05;
-		data->player->pos->y += sin(data->player->angle + PI/2) * 0.05;
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-	{
-		data->player->pos->x += cos(data->player->angle - PI/2) * 0.05;
-		data->player->pos->y += sin(data->player->angle - PI/2) * 0.05;
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		data->player->angle += 0.05;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		data->player->angle -= 0.05;
+	key_hook2(data);
 	return (0);
 }

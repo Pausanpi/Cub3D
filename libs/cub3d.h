@@ -178,6 +178,7 @@ void	ft_fill_minimap(t_data *data, mlx_image_t *minimap);
 
 // keys
 int		key_hook(t_data *data);
+void	key_hook2(t_data *data);
 
 // draw
 void	ft_paint_walls(t_data *f, float wall, int col);
