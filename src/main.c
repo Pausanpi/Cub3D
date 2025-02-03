@@ -30,7 +30,7 @@ void	ft_hook(void *param)
 	while (i < 1080)
 	{
 		ft_rayete (f, i);
-		ft_paint_walls(f, ((WALL_H * 0.7) / ((f->ray->length) * (cos(f->ray->angle - f->player->angle)) * 1)), i);
+		ft_paint_walls(f, ((WALL_H * 1) / ((f->ray->length) * (cos(f->ray->angle - f->player->angle)) * 1)), i);
 		i++;
 	}
 }

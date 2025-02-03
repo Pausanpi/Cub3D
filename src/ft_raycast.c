@@ -52,6 +52,13 @@ void	ft_ray_direction(t_data *data)
 		data->ray->x_sign = -1;
 	if (data->ray->dir.y < 0)
 		data->ray->y_sign = -1;
+
+	// esto podria servir para desplazar al bicho siempre en los exactos, en lugar de blindar los rayetes
+	if (fmod(data->ray->origin.x, 1.0) == 0)
+		data->ray->origin.x += 0.0001 * data->ray->x_sign;
+	if (fmod(data->ray->origin.y, 1.0) == 0)
+		data->ray->origin.y += 0.0001 * data->ray->y_sign;
+
 	data->ray->first_x = (ceil(data->ray->origin.x) - data->ray->origin.x)
 		* data->ray->delta_x;
 	if (data->ray->dir.x < 0)
