@@ -46,9 +46,9 @@ void	ft_ray_direction(t_data *data)
 	if (data->ray->dir.y < 0)
 		data->ray->y_sign = -1;
 	if (data->ray->origin.x == (int)data->ray->origin.x)
-		data->ray->origin.x += 0.0001 * data->ray->x_sign;
+		data->ray->origin.x += 0.0001;
 	if (data->ray->origin.y == (int)data->ray->origin.y)
-		data->ray->origin.y += 0.0001 * data->ray->y_sign;
+		data->ray->origin.y += 0.0001;
 	data->ray->first_x = (ceil(data->ray->origin.x) - data->ray->origin.x)
 		* data->ray->delta_x;
 	if (data->ray->dir.x < 0)
