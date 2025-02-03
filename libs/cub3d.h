@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/01/30 14:53:55 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:54:41 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@
 # define PI 3.14159265358979323846 //existe el M_PI pero me puedo fiar?
 /*MARGEN DE ERROR*/
 # define EPSILON 0.3 //no era el margen de error, si yo sabia
+
+
+
+
+
+# define BLACK 0x000000ff
+# define WHITE 0xffffffff
+# define RED 0xff0000ff
+# define GRAY 0x808080ff
+# define BLUE 0x0000ffff
+# define PINK 0xF8A4A7ff
+# define TRANSPARENT 0x00000000
 /*--------------------------------   STRUCTS   -------------------------------*/
 
 typedef struct s_rgb
@@ -120,13 +132,16 @@ typedef struct s_data
 	uint32_t		*ceiling;
 	uint32_t		*floor;
 
+	mlx_image_t		*minimap;
+	mlx_image_t		*player_img;
+
 	int			prueba;
 }	t_data;
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
 // main file
-int 	main(int argc, char **argv);
+int		main(int argc, char **argv);
 void	ft_openwindow(t_data *f);
 //void	ft_init_f(t_data *f);
 void	ft_hook(void *param);
@@ -140,17 +155,28 @@ void	ft_ray_direction(t_data *data);
 void	ft_init_ray(t_data *data, int i);
 
 // map_checker
-int check_textures(t_data *data, char **texture);
-int	save_map(t_data *data);
-int check_map(t_data *data);
-int check_first_line(t_data *data);
-int check_chars(t_data *data);
-int fill_map(t_data *data);
+int		check_textures(t_data *data, char **texture);
+int		save_map(t_data *data);
+int		check_map(t_data *data);
+int		check_first_line(t_data *data);
+int		check_chars(t_data *data);
+int		fill_map(t_data *data);
 
 // parse
-int parser(t_data *data, char *file);
+int		parser(t_data *data, char *file);
 
 // textures
-void load_textures(t_data *data, char *textures);
+void	load_textures(t_data *data, char *textures);
+
+// utils
+void	free_doble_array(char **str);
+
+void	ft_draw_minimap(t_data *data);
+void	ft_center_minimap(mlx_image_t *minimap, mlx_image_t *player);
+void	ft_draw_player(t_data *data, mlx_image_t *player_img, int x, int y);
+void	ft_fill_minimap(t_data *data, mlx_image_t *minimap);
+
+// keys
+int		key_hook(t_data *data);
 
 #endif

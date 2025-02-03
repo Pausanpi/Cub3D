@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/31 17:41:29 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:56:09 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,44 +95,11 @@ void	ft_hook(void *param)
 {
 	t_data	*f;
 	int		i;
-	double	move_speed = 0.05;
-	double	strafe_speed = 0.05;
 
 	f = param;
-	if (mlx_is_key_down(f->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(f->mlx);
-
-	// Move forward
-	if (mlx_is_key_down(f->mlx, MLX_KEY_W))
-	{
-		f->player->pos->x += cos(f->player->angle) * move_speed;
-		f->player->pos->y += sin(f->player->angle) * move_speed;
-	}
-	// Move backward
-	if (mlx_is_key_down(f->mlx, MLX_KEY_S))
-	{
-		f->player->pos->x -= cos(f->player->angle) * move_speed;
-		f->player->pos->y -= sin(f->player->angle) * move_speed;
-	}
-	// Strafe right
-	if (mlx_is_key_down(f->mlx, MLX_KEY_D))
-	{
-		f->player->pos->x += cos(f->player->angle + PI/2) * strafe_speed;
-		f->player->pos->y += sin(f->player->angle + PI/2) * strafe_speed;
-	}
-	// Strafe left
-	if (mlx_is_key_down(f->mlx, MLX_KEY_A))
-	{
-		f->player->pos->x += cos(f->player->angle - PI/2) * strafe_speed;
-		f->player->pos->y += sin(f->player->angle - PI/2) * strafe_speed;
-	}
-	// Rotate right
-	if (mlx_is_key_down(f->mlx, MLX_KEY_E))
-		f->player->angle += 0.05;
-	// Rotate left
-	if (mlx_is_key_down(f->mlx, MLX_KEY_Q))
-		f->player->angle -= 0.05;
-
+	
+	key_hook(f);
+	
 	i = 0;
 	while (i < 1080)
 	{
@@ -141,6 +108,8 @@ void	ft_hook(void *param)
 		i += 1;
 	}
 }
+
+
 
 void	ft_openwindow(t_data *f)
 {
@@ -208,6 +177,7 @@ int main(int argc, char **argv)
         return (1);
 	}
 
+	ft_draw_minimap(&data);
 	ft_openwindow(&data);
 	return (0);
 }

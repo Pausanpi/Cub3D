@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/30 11:02:11 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:43:09 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ int parser(t_data *data, char *file)
         return (1);
 	}
 	load_textures(data, texture); // habria que hacer un check de esto
+	if (!data->no || !data->so || !data->ea || !data->we)
+		return(free(data->line), printf("Error: Missing textures\n"), 1);
+	if (!data->ceiling || !data->floor)
+		return(free(data->line), printf("Error: Missing RGB colors\n"), 1);
     return (0);
 }

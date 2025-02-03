@@ -16,6 +16,7 @@ HEADERS = -I ./libs -I $(MLX42_PATH)/include/MLX42 -I $(LIBFT_PATH)
 SRCS =	src/main.c \
 		src/ft_raycast.c \
 		src/parse.c src/map_checker.c src/textures.c \
+		src/utils.c src/minimap.c src/keys.c
 
 OBJS = $(SRCS:src/%.c=obj/%.o)
 
