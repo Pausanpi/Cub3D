@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/03 10:54:41 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:10:25 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ typedef struct s_data
 // main file
 int		main(int argc, char **argv);
 void	ft_openwindow(t_data *f);
-//void	ft_init_f(t_data *f);
 void	ft_hook(void *param);
 void	ft_paint_walls(t_data *f, float wall, int col);
 void	ft_error(int i, t_data *data);
@@ -171,6 +170,7 @@ void	load_textures(t_data *data, char *textures);
 // utils
 void	free_doble_array(char **str);
 
+// minimap
 void	ft_draw_minimap(t_data *data);
 void	ft_center_minimap(mlx_image_t *minimap, mlx_image_t *player);
 void	ft_draw_player(t_data *data, mlx_image_t *player_img, int x, int y);
@@ -178,5 +178,8 @@ void	ft_fill_minimap(t_data *data, mlx_image_t *minimap);
 
 // keys
 int		key_hook(t_data *data);
+
+// draw
+void	ft_paint_walls(t_data *f, float wall, int col);
 
 #endif
