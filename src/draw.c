@@ -54,29 +54,38 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	if (bot > HEIGHT)
 		bot = HEIGHT;
 
-	// Calcular el paso para mapear la textura
+	// Calculate step for texture scaling
 	step = (float)current_texture->height / wall;
+
+	// Calculate the initial texture Y position based on the wall's starting point
+	tex_y = 0;
+	if (top == 0)  // If the wall is extending off-screen at the top
+		tex_y = -(HEIGHT / 2 - wall / 2) * step;  // Start lower in the texture
 
 	j = 0;
 	while (j < HEIGHT)
 	{
 		if (j < top)
-			mlx_put_pixel(f->img, col, j, (f->ceiling[0]<< 24 | f->ceiling[1] << 16 | f->ceiling[2] << 8 | 255)); // Cielo
+			mlx_put_pixel(f->img, col, j, (f->ceiling[0] << 24 | f->ceiling[1] << 16 | f->ceiling[2] << 8 | 255)); // Ceiling
 		else if (j > bot)
-			mlx_put_pixel(f->img, col, j, (f->floor[0] << 24 | f->floor[1] << 16 | f->floor[2] << 8 | 255)); // Suelo
+			mlx_put_pixel(f->img, col, j, (f->floor[0] << 24 | f->floor[1] << 16 | f->floor[2] << 8 | 255)); // Floor
 		else
 		{
-			// Mapear la coordenada y de la pantalla a la coordenada y de la textura
-			tex_y = (j - top) * step;
 			
-			// Obtener el color del pixel de la textura
+			// Map the screen Y coordinate to texture Y coordinate correctly
+			int tex_y_int = (int)tex_y % current_texture->height; // Ensure tex_y doesn't exceed texture bounds
+
+			// Get the pixel color from the texture
 			pixel = &current_texture->pixels[
-				((int)tex_y * current_texture->width + (int)tex_x) * current_texture->bytes_per_pixel];
-			
-			// Crear el color RGBA
+				(tex_y_int * current_texture->width + (int)tex_x) * current_texture->bytes_per_pixel];
+
+			// Construct the RGBA color
 			uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | 255;
-			
+
 			mlx_put_pixel(f->img, col, j, color);
+
+			// Increment tex_y for the next row
+			tex_y += step;
 		}
 		j++;
 	}
