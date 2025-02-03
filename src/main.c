@@ -30,7 +30,8 @@ void	ft_hook(void *param)
 	while (i < 1080)
 	{
 		ft_rayete (f, i);
-		ft_paint_walls(f, ((WALL_H * 1) / ((f->ray->length) * (cos(f->ray->angle - f->player->angle)) * 1)), i);
+		ft_paint_walls(f, ((WALL_H * 1) / ((f->ray->length)
+					* (cos(f->ray->angle - f->player->angle)) * 1)), i);
 		i++;
 	}
 }
@@ -43,14 +44,14 @@ void	ft_openwindow(t_data *f)
 	mlx_terminate(f->mlx);
 }
 
-static void init_struct(t_data *data)
-{	
-    data->fd = 0;
-    data->line = NULL;
-    data->texture_count = 0;
-    data->char_pos = 0;
+static void	init_struct(t_data *data)
+{
+	data->fd = 0;
+	data->line = NULL;
+	data->texture_count = 0;
+	data->char_pos = 0;
 	data->height_map = 0;
-    data->width_map = 0;
+	data->width_map = 0;
 	data->player = malloc(sizeof(t_player));
 	data->player->pos = malloc(sizeof(t_coordinate));
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
@@ -70,30 +71,31 @@ static void init_struct(t_data *data)
 	data->floor = malloc(sizeof(uint32_t) * 3);
 }
 
-static int check_extension(char *file)
+static int	check_extension(char *file)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (file[i])
-        i++;
-    if (file[i - 1] != 'b' || file[i - 2] != 'u' || file[i - 3] != 'c' || file[i - 4] != '.')
-        return (1);
-    return (0);
+	i = 0;
+	while (file[i])
+		i++;
+	if (file[i - 1] != 'b' || file[i - 2] != 'u'
+		|| file[i - 3] != 'c' || file[i - 4] != '.')
+		return (1);
+	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_data data;
+	t_data	data;
 
-    if (argc != 2)
-        return (printf("Error: Invalid number of arguments\n"), 1);
-    if (check_extension(argv[1]) == 1)
-        return (printf("Error: Invalid file extension\n"), 1);
-    init_struct(&data);
-    if (parser(&data, argv[1]) == 1)
+	if (argc != 2)
+		return (printf("Error: Invalid number of arguments\n"), 1);
+	if (check_extension(argv[1]) == 1)
+		return (printf("Error: Invalid file extension\n"), 1);
+	init_struct(&data);
+	if (parser(&data, argv[1]) == 1)
 	{
-        return (1);
+		return (1);
 	}
 
 	ft_draw_minimap(&data);
