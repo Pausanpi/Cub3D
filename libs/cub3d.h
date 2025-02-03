@@ -149,7 +149,7 @@ void	ft_error(int i, t_data *data);
 
 // raycast file
 void	ft_rayete(t_data *data, int i);
-void	ft_traverse_map(t_data *data);
+void	ft_traverse_map(t_data *data, int map_x, int map_y);
 void	ft_ray_direction(t_data *data);
 void	ft_init_ray(t_data *data, int i);
 

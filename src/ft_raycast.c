@@ -12,31 +12,24 @@
 
 #include "../libs/cub3d.h"
 
-
-//voy a empezar con cinco rayos bien basicos lanzadados desde 5,4 o algo as'i
-
-void	ft_traverse_map(t_data *data)
+void	ft_traverse_map(t_data *data, int map_x, int map_y)
 {
-	int		map_x;
-	int		map_y;
-
-	map_x = (int)data->ray->origin.x;
-	map_y = (int)data->ray->origin.y;
-//	while (data->map[map_y][map_x] == '0')
-	while (map_y > 0 && map_y < data->height_map &&  //este seguro solo sirve para tamaño 10x10 que no crashee, habria que hacerlo dinamico al tama;o del cuadro.
-		map_x > 0 && map_x < data->width_map && (data->map[map_y][map_x] == '0'
-		|| data->map[map_y][map_x] == 'N' || data->map[map_y][map_x] == 'S' || data->map[map_y][map_x] == 'E' || data->map[map_y][map_x] == 'W'))
+	while (map_y > 0 && map_y < data->height_map
+		&& map_x > 0 && map_x < data->width_map
+		&& (data->map[map_y][map_x] == '0'
+		|| data->map[map_y][map_x] == 'N' || data->map[map_y][map_x] == 'S'
+		|| data->map[map_y][map_x] == 'E' || data->map[map_y][map_x] == 'W'))
 	{
-		if (fabs(data->ray->first_x) < fabs(data->ray->first_y)) // posible necesidad de epsilon
+		if (fabs(data->ray->first_x) < fabs(data->ray->first_y))
 		{
-			data->ray->length = data->ray->first_x;// * cos(data->ray->angle - (data->player->angle)); // era hacer esto primero, loco.
+			data->ray->length = data->ray->first_x;
 			data->ray->first_x += data->ray->delta_x;
 			map_x += data->ray->x_sign;
 			data->ray->last_cross = 0;
 		}
 		else
 		{
-			data->ray->length = data->ray->first_y; // * cos(data->ray->angle - data->player->angle);
+			data->ray->length = data->ray->first_y;
 			data->ray->first_y += data->ray->delta_y;
 			map_y += data->ray->y_sign;
 			data->ray->last_cross = 1;
@@ -52,13 +45,10 @@ void	ft_ray_direction(t_data *data)
 		data->ray->x_sign = -1;
 	if (data->ray->dir.y < 0)
 		data->ray->y_sign = -1;
-
-	// esto podria servir para desplazar al bicho siempre en los exactos, en lugar de blindar los rayetes
-	if (fmod(data->ray->origin.x, 1.0) == 0)
+	if (data->ray->origin.x == (int)data->ray->origin.x)
 		data->ray->origin.x += 0.0001 * data->ray->x_sign;
-	if (fmod(data->ray->origin.y, 1.0) == 0)
+	if (data->ray->origin.y == (int)data->ray->origin.y)
 		data->ray->origin.y += 0.0001 * data->ray->y_sign;
-
 	data->ray->first_x = (ceil(data->ray->origin.x) - data->ray->origin.x)
 		* data->ray->delta_x;
 	if (data->ray->dir.x < 0)
@@ -73,8 +63,11 @@ void	ft_ray_direction(t_data *data)
 
 void	ft_init_ray(t_data *data, int i)
 {
-	data->ray->deltaang = (PI / 2) / (WIDTH - 1);
-	data->ray->angle = data->player->angle -(PI/4) + (i * data->ray->deltaang);
+	double	unitary_screen_center;
+
+	unitary_screen_center = ((i - WIDTH / 2.0) / (WIDTH / 2.0));
+	data->ray->deltaang = atan(unitary_screen_center * tan(PI / 4));
+	data->ray->angle = data->player->angle + data->ray->deltaang;
 	data->ray->dir.x = cos(data->ray->angle);
 	data->ray->dir.y = sin(data->ray->angle);
 	data->ray->origin = *data->player->pos;
@@ -84,15 +77,16 @@ void	ft_init_ray(t_data *data, int i)
 
 void	ft_rayete(t_data *data, int i)
 {
+	int		map_x;
+	int		map_y;
+
+	map_x = (int)data->ray->origin.x;
+	map_y = (int)data->ray->origin.y;
 	ft_init_ray(data, i);
 	ft_ray_direction(data);
-	ft_traverse_map(data);
-		
+	ft_traverse_map(data, (int)data->ray->origin.x, (int)data->ray->origin.y);
 	data->ray->wall_collision.x = data->ray->origin.x + data->ray->length
 		* data->ray->dir.x;
 	data->ray->wall_collision.y = data->ray->origin.y + data->ray->length
 		* data->ray->dir.y;
 }
-/* 	printf("Ray %d: Angle = %.4f, Hit Wall at (NA, NA), Coordinates (%.2f, %.2f), Distance = %.2f\n",
-		i, data->ray->angle, data->ray->wall_collision.x,
-		data->ray->wall_collision.y, data->ray->length); */
