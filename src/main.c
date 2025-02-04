@@ -84,6 +84,19 @@ static int	check_extension(char *file)
 	return (0);
 }
 
+void	ft_init_pos(t_data *data)
+{
+	ft_putchar_fd(data->orientation, 1);
+	if (data->orientation == 'N')
+		data->player->angle = 3 * PI / 2;
+	if (data->orientation == 'S')
+		data->player->angle = PI / 2;
+	if (data->orientation == 'W')
+		data->player->angle = 0;
+	if (data->orientation == 'E')
+		data->player->angle = PI;
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -97,7 +110,7 @@ int	main(int argc, char **argv)
 	{
 		return (1);
 	}
-
+	ft_init_pos(&data);
 	ft_draw_minimap(&data);
 	ft_openwindow(&data);
 	return (0);

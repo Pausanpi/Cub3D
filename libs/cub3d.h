@@ -142,6 +142,7 @@ typedef struct s_data
 
 // main file
 int		main(int argc, char **argv);
+void	ft_init_pos(t_data *data);
 void	ft_openwindow(t_data *f);
 void	ft_hook(void *param);
 void	ft_paint_walls(t_data *f, float wall, int col);
