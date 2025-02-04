@@ -124,8 +124,8 @@ int check_map(t_data *data)
 				return (printf("Error: Horizontal or vertical elements\n"), 1);
 			if (c == 'O' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
-				data->player->pos->x = (double)j;
-				data->player->pos->y = (double)i;
+				data->player->pos->x = (double)j + 0.5;
+				data->player->pos->y = (double)i + 0.5;
 			}
 		}
 	
