@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:47:47 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/03 11:02:17 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:57:39 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	key_hook2(t_data *data)
 		data->player->pos->x += cos(data->player->angle + PI / 2) * 0.05;
 		data->player->pos->y += sin(data->player->angle + PI / 2) * 0.05;
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
 		data->player->pos->x += cos(data->player->angle - PI / 2) * 0.05;
 		data->player->pos->y += sin(data->player->angle - PI / 2) * 0.05;
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		data->player->angle += 0.05;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		data->player->angle -= 0.05;
 }
 
-int	key_hook(t_data *data)
+void	key_hook(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
@@ -38,16 +38,16 @@ int	key_hook(t_data *data)
 		mlx_terminate(data->mlx);
 		exit(0);
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
 		data->player->pos->x += cos(data->player->angle) * 0.05;
 		data->player->pos->y += sin(data->player->angle) * 0.05;
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
 		data->player->pos->x -= cos(data->player->angle) * 0.05;
 		data->player->pos->y -= sin(data->player->angle) * 0.05;
 	}
-	key_hook2(data);
-	return (0);
+	else
+		key_hook2(data);
 }

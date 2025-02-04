@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/01/31 18:31:48 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:08:34 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@
 */
 void	initialize_colors(t_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (i < 3)
-	{
-		data->ceiling[i] = 0;
-		data->floor[i] = 0;
-		i++;
-	}
+	data->ceiling = malloc(sizeof(uint32_t) * 3);
+	data->floor = malloc(sizeof(uint32_t) * 3);
+	if (!data->ceiling || !data->floor)
+		return ;
+	ft_memset(data->ceiling, 0, sizeof(uint32_t) * 3);
+	ft_memset(data->floor, 0, sizeof(uint32_t) * 3);
 }
 
 /*
@@ -35,26 +32,28 @@ void	initialize_colors(t_data *data)
 */
 int	validate_and_assign_colors(uint32_t *color_array, char **rgb)
 {
+	int	i;
 	int	j;
 	int	color_val;
 
-	j = 0;
-	while (j < 3)
+	i = 0;
+	while (i < 3)
 	{
-		color_val = ft_atoi(rgb[j]);
+		if (!rgb[i])
+			return (print_error("Missing RGB value"), 1);
+		j = -1;
+		if (!ft_isdigit(rgb[i][++j]))
+			return (free(rgb), print_error("Invalid RGB value"), 1);
+		color_val = ft_atoi(rgb[i]);
 		if (color_val < 0 || color_val > 255)
 		{
-			while (rgb[j])
-			{
-				free(rgb[j]);
-				j++;
-			}
 			free(rgb);
-			return (1);
+			return (print_error("Invalid RGB value"), 1);
 		}
-		color_array[j] = color_val;
-		j++;
+		color_array[i] = color_val;
+		i++;
 	}
+	free_doble(rgb);
 	return (0);
 }
 
@@ -65,19 +64,22 @@ int	validate_and_assign_colors(uint32_t *color_array, char **rgb)
 */
 int	process_color_line(char *line, uint32_t *color_array)
 {
+	int		i;
 	char	**rgb;
-	
-	rgb = ft_split(line + 2, ',');
+
+	i = 1;
+	while (line[i] == ' ')
+		i++;
+	rgb = ft_split(line + i, ',');
 	if (!rgb)
 		return (1);
 	if (validate_and_assign_colors(color_array, rgb))
 		return (1);
-	free_doble_array(rgb);
 	return (0);
 }
 
 /*
-	Recorre el array text_walls en busca de las líneas de colores del techo y el suelo
+	Recorre el array text_walls en busca de las líneas de colores
 	Llama a process_color_line()
 	En caso de error, retorna 1
 */
@@ -112,7 +114,7 @@ int	color_check(t_data *data, char **text_walls)
 	Usa mlx_load_png() para cargar las texturas en NO, SO, EA y WE
 	Llama a color_check() para procesar los colores del techo y el suelo
 */
-void	load_textures(t_data *data, char *textures)
+int	load_textures(t_data *data, char *textures)
 {
 	int		i;
 	int		j;
@@ -134,9 +136,9 @@ void	load_textures(t_data *data, char *textures)
 		path_text_walls[i][j - 3] = '\0';
 		i++;
 	}
-	data->no = mlx_load_png(path_text_walls[0]);
-	data->so = mlx_load_png(path_text_walls[1]);
-	data->ea = mlx_load_png(path_text_walls[2]);
-	data->we = mlx_load_png(path_text_walls[3]);
-	color_check(data, text_walls);
+	if (save_texture_wall(data, path_text_walls))
+		return (1);
+	if (color_check(data, text_walls))
+		return (1);
+	return (0);
 }

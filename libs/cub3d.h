@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/03 11:10:25 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:03:20 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,15 +140,10 @@ typedef struct s_data
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
-// main file
+// main
 int		main(int argc, char **argv);
-void	ft_init_pos(t_data *data);
-void	ft_openwindow(t_data *f);
-void	ft_hook(void *param);
-void	ft_paint_walls(t_data *f, float wall, int col);
-void	ft_error(int i, t_data *data);
 
-// raycast file
+// raycast
 void	ft_rayete(t_data *data, int i);
 void	ft_traverse_map(t_data *data, int map_x, int map_y);
 void	ft_ray_direction(t_data *data);
@@ -158,30 +153,36 @@ void	ft_init_ray(t_data *data, int i);
 int		check_textures(t_data *data, char **texture);
 int		save_map(t_data *data);
 int		check_map(t_data *data);
-int		check_first_line(t_data *data);
 int		check_chars(t_data *data);
 int		fill_map(t_data *data);
+
+// utils_map_check
+void	gnl_texture(t_data *data, char **texture);
+char	*gnl_ft_strjoin2(char *s1, char *s2);
+int		check_first_line(t_data *data);
 
 // parse
 int		parser(t_data *data, char *file);
 
 // textures
-void	load_textures(t_data *data, char *textures);
+int		load_textures(t_data *data, char *textures);
 
 // utils
-void	free_doble_array(char **str);
-
-// minimap
-void	ft_draw_minimap(t_data *data);
-void	ft_center_minimap(mlx_image_t *minimap, mlx_image_t *player);
-void	ft_draw_player(t_data *data, mlx_image_t *player_img, int x, int y);
-void	ft_fill_minimap(t_data *data, mlx_image_t *minimap);
+void	ft_error(int i, t_data *data);
+void	free_doble(char **str);
+void	print_error(char *str);
+int		save_texture_wall(t_data *data, char **path_text_walls);
 
 // keys
-int		key_hook(t_data *data);
+void		key_hook(t_data *data);
 void	key_hook2(t_data *data);
 
 // draw
 void	ft_paint_walls(t_data *f, float wall, int col);
+
+// init
+void	init_struct(t_data *data);
+void	init_mlx(t_data *data);
+void	ft_init_pos(t_data *data);
 
 #endif
