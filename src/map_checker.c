@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:07 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 14:27:29 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:45:22 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,15 @@ int	check_chars(t_data *data)
 	return (0);
 }
 
+void	ft_player_pos_ini(t_data *data, char c, int i, int j)
+{
+	if (c == 'O' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		data->player->pos->x = (double)j + 0.5;
+		data->player->pos->y = (double)i + 0.5;
+	}
+}
+
 int	check_map(t_data *data)
 {
 	int		i;
@@ -85,11 +94,7 @@ int	check_map(t_data *data)
 				&& ((data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' ')
 				|| (data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')))
 				return (print_error("Horizontal or vertical elements"), 1);
-			if (c == 'O' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-			{
-				data->player->pos->x = (double)j + 0.5;
-				data->player->pos->y = (double)i + 0.5;
-			}
+			ft_player_pos_ini(data, c, i, j);
 		}
 	}
 	return (0);
@@ -122,33 +127,4 @@ int	save_map(t_data *data)
 			return (free(copy), 1);
 	}
 	return (free(copy), 0);
-}
-
-int	check_textures(t_data *data, char **texture)
-{
-	while (data->line && data->line[0] != '1' && data->line[0] != ' ')
-	{
-		if ((ft_strncmp(data->line, "NO", 2) || ft_strncmp(data->line, "SO", 2)
-				|| ft_strncmp(data->line, "WE", 2)
-				|| ft_strncmp(data->line, "EA", 2)) && (data->line[2] == ' '
-				|| (data->line[2] >= 9 && data->line[3] <= 13)))
-			gnl_texture(data, texture);
-		else if ((ft_strncmp(data->line, "F", 1)
-				|| ft_strncmp(data->line, "C", 1)) && (data->line[1] == ' '
-				|| (data->line[1] >= 9 && data->line[2] <= 13)))
-			gnl_texture(data, texture);
-		free(data->line);
-		data->line = get_next_line(data->fd);
-		if (data->line && data->line[0] >= 9 && data->line[0] <= 13)
-		{
-			free(data->line);
-			data->line = get_next_line(data->fd);
-		}
-	}
-	if (data->texture_count != 6)
-		return (free(*texture), free(data->line),
-			print_error("Missing textures"), 1);
-	if (save_map(data))
-		return (1);
-	return (0);
 }

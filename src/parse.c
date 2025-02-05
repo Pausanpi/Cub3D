@@ -6,11 +6,40 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/04 14:51:11 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:44:09 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub3d.h"
+
+int	check_textures(t_data *data, char **texture)
+{
+	while (data->line && data->line[0] != '1' && data->line[0] != ' ')
+	{
+		if ((ft_strncmp(data->line, "NO", 2) || ft_strncmp(data->line, "SO", 2)
+				|| ft_strncmp(data->line, "WE", 2)
+				|| ft_strncmp(data->line, "EA", 2)) && (data->line[2] == ' '
+				|| (data->line[2] >= 9 && data->line[3] <= 13)))
+			gnl_texture(data, texture);
+		else if ((ft_strncmp(data->line, "F", 1)
+				|| ft_strncmp(data->line, "C", 1)) && (data->line[1] == ' '
+				|| (data->line[1] >= 9 && data->line[2] <= 13)))
+			gnl_texture(data, texture);
+		free(data->line);
+		data->line = get_next_line(data->fd);
+		if (data->line && data->line[0] >= 9 && data->line[0] <= 13)
+		{
+			free(data->line);
+			data->line = get_next_line(data->fd);
+		}
+	}
+	if (data->texture_count != 6)
+		return (free(*texture), free(data->line),
+			print_error("Missing textures"), 1);
+	if (save_map(data))
+		return (1);
+	return (0);
+}
 
 int	parser(t_data *data, char *file)
 {

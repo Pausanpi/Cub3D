@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/05 14:16:55 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:44:25 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ void	ft_ray_direction(t_data *data);
 void	ft_init_ray(t_data *data, int i);
 
 // map_checker
-int		check_textures(t_data *data, char **texture);
 int		save_map(t_data *data);
 int		check_map(t_data *data);
 int		check_chars(t_data *data);
@@ -169,8 +168,10 @@ void	gnl_texture(t_data *data, char **texture);
 char	*gnl_ft_strjoin2(char *s1, char *s2);
 int		check_first_line(t_data *data);
 int		ft_bucle(t_data *data, int i, int j);
+size_t	ft_electric_bucleloo(t_data *data);
 
 // parse
+int		check_textures(t_data *data, char **texture);
 int		parser(t_data *data, char *file);
 
 // textures

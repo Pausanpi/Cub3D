@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:08:24 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 13:29:57 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:35:06 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,11 @@ float ft_distance(t_data *data, mlx_texture_t **current)
 	return (wall_x * (*current)->width);
 }
 
-void ft_peint(t_data *f, int col, t_paint *p)
+void ft_peint(t_data *f, int col, t_paint *p, int j)
 {
-	int			j;
 	int			tex_y_int;
 	uint32_t	color;
 
-	j = 0;
 	while (j < HEIGHT)
 	{
 		if (j < p->top)
@@ -71,7 +69,9 @@ void ft_peint(t_data *f, int col, t_paint *p)
 void	ft_paint_walls(t_data *f, float wall, int col)
 {
 	t_paint	*p;
+	int		j;
 
+	j = 0;
 	p = malloc(sizeof(t_paint));
 	p->current_texture = malloc(sizeof(mlx_texture_t));
 	p->tex_x = ft_distance(f, &p->current_texture);
@@ -85,6 +85,6 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	p->tex_y = 0;
 	if (p->top == 0)
 		p->tex_y = -(HEIGHT / 2 - wall / 2) * p->step;
-	ft_peint(f, col, p);
+	ft_peint(f, col, p, j);
 	//hay que liberar la estructura p
 }
