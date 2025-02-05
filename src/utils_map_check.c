@@ -82,8 +82,8 @@ int	ft_bucle(t_data *data, int i, int j)
 
 size_t	ft_electric_bucleloo(t_data *data)
 {
-	int i;
-	size_t max_l;
+	int 	i;
+	size_t	max_l;
 
 	i = -1;
 	max_l = 0;

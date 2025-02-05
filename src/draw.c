@@ -40,24 +40,26 @@ float ft_distance(t_data *data, mlx_texture_t **current)
 
 void ft_peint(t_data *f, int col, t_paint *p)
 {
-	int j;
+	int			j;
+	int			tex_y_int;
+	uint32_t	color;
 
 	j = 0;
 	while (j < HEIGHT)
 	{
 		if (j < p->top)
 			mlx_put_pixel(f->img, col, j, (f->ceiling[0] << 24
-				| f->ceiling[1] << 16 | f->ceiling[2] << 8 | 255));
+					| f->ceiling[1] << 16 | f->ceiling[2] << 8 | 255));
 		else if (j > p->bot)
 			mlx_put_pixel(f->img, col, j, (f->floor[0] << 24
-				| f->floor[1] << 16 | f->floor[2] << 8 | 255));
+					| f->floor[1] << 16 | f->floor[2] << 8 | 255));
 		else
 		{
-			int tex_y_int = (int)p->tex_y % p->current_texture->height;
+			tex_y_int = (int)p->tex_y % p->current_texture->height;
 			p->pixel = &p->current_texture->pixels[
 				(tex_y_int * p->current_texture->width + (int)p->tex_x)
-					* p->current_texture->bytes_per_pixel];
-			uint32_t color = (p->pixel[0] << 24)
+				* p->current_texture->bytes_per_pixel];
+			color = (p->pixel[0] << 24)
 				| (p->pixel[1] << 16) | (p->pixel[2] << 8) | 255;
 			mlx_put_pixel(f->img, col, j, color);
 			p->tex_y += p->step;
