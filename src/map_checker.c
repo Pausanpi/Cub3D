@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:07 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 14:16:37 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:27:29 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,7 @@ int	fill_map(t_data *d)
 	char	*new_ln;
 
 	i = -1;
-	max_l = 0;
-	while (d->map[++i])
-	{
-		if (max_l < ft_strlen(d->map[i]))
-			max_l = ft_strlen(d->map[i]);
-	}
-	i = -1;
+	max_l = ft_electric_bucleloo(d);
 	while (d->map[++i])
 	{
 		j = ft_strlen(d->map[i]);

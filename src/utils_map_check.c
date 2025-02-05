@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:59:08 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 14:17:03 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:27:23 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,19 @@ int	ft_bucle(t_data *data, int i, int j)
 		data->orientation = data->map[i][j];
 	}
 	return (0);
+}
+
+size_t	ft_electric_bucleloo(t_data *data)
+{
+	int i;
+	size_t max_l;
+
+	i = -1;
+	max_l = 0;
+	while (data->map[++i])
+	{
+		if (max_l < ft_strlen(data->map[i]))
+			max_l = ft_strlen(data->map[i]);
+	}
+	return (max_l);
 }
