@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/05 13:22:20 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:16:55 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ typedef struct s_collision       // NO HACE FALTA HASTA EL BONUS
 	// eli marca una distancia, que quiza sea pa evitar el ojo de pez
 }	t_collision;
 
-
 typedef struct s_ray
 {
 	double			angle;
@@ -169,6 +168,7 @@ int		fill_map(t_data *data);
 void	gnl_texture(t_data *data, char **texture);
 char	*gnl_ft_strjoin2(char *s1, char *s2);
 int		check_first_line(t_data *data);
+int		ft_bucle(t_data *data, int i, int j);
 
 // parse
 int		parser(t_data *data, char *file);

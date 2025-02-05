@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:07 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 12:35:59 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:16:37 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,8 @@ int	check_chars(t_data *data)
 	{
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] != '1' && data->map[i][j] != '0'
-				&& data->map[i][j] != 'N' && data->map[i][j] != 'S'
-				&& data->map[i][j] != 'E' && data->map[i][j] != 'W'
-				&& data->map[i][j] != 32)
-				return (print_error("Invalid character"), 1);
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
-				|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
-			{
-				data->char_pos++;
-				data->orientation = data->map[i][j];
-			}
+			if (ft_bucle(data, i, j))
+				return (1);
 			j++;
 		}
 		j = 0;

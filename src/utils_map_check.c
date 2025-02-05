@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:59:08 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/04 17:06:49 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:17:03 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ int	check_first_line(t_data *data)
 			|| data->map[i][ft_strlen(data->map[i]) - 1] != '1'))
 			return (print_error("Space in first line"), 1);
 		i++;
+	}
+	return (0);
+}
+
+int	ft_bucle(t_data *data, int i, int j)
+{
+	if (data->map[i][j] != '1' && data->map[i][j] != '0'
+		&& data->map[i][j] != 'N' && data->map[i][j] != 'S'
+		&& data->map[i][j] != 'E' && data->map[i][j] != 'W'
+		&& data->map[i][j] != 32)
+		return (print_error("Invalid character"), 1);
+	if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
+		|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
+	{
+		data->char_pos++;
+		data->orientation = data->map[i][j];
 	}
 	return (0);
 }
