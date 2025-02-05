@@ -17,6 +17,7 @@ SRCS =	src/main.c \
 		src/ft_raycast.c \
 		src/parse.c src/map_checker.c src/textures.c \
 		src/utils.c src/init.c src/keys.c src/draw.c \
+		src/utils_map_check.c
 
 OBJS = $(SRCS:src/%.c=obj/%.o)
 

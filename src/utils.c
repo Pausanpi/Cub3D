@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:27:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/04 17:06:24 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:31:45 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_doble(char **str)
 
 void	print_error(char *str)
 {
-	ft_putstr_fd("ERROR\n", 2);
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
 }

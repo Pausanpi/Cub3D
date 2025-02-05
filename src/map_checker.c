@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:07 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/04 17:14:39 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:35:59 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int	check_textures(t_data *data, char **texture)
 			gnl_texture(data, texture);
 		free(data->line);
 		data->line = get_next_line(data->fd);
-		if (data->line[0] >= 9 && data->line[0] <= 13)
+		if (data->line && data->line[0] >= 9 && data->line[0] <= 13)
 		{
 			free(data->line);
 			data->line = get_next_line(data->fd);
