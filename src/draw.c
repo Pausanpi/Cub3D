@@ -6,11 +6,36 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:08:24 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 12:24:28 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:12:50 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub3d.h"
+
+float ft_distance(t_data *data, mlx_texture_t **current)
+{
+	float wall_x;
+	if (data->ray->last_cross == 0)
+		wall_x = data->ray->wall_collision.y - floor(data->ray->wall_collision.y);
+	else
+		wall_x = data->ray->wall_collision.x - floor(data->ray->wall_collision.x);
+
+	if (data->ray->last_cross == 0)
+	{
+		if (data->ray->x_sign == 1)
+			*current = data->we;
+		else
+			*current = data->ea;
+	}
+	else
+	{
+		if (data->ray->y_sign == 1)
+			*current = data->no;
+		else
+			*current = data->so;
+	}
+	return (wall_x * (*current)->width);
+}
 
 void	ft_paint_walls(t_data *f, float wall, int col)
 {
@@ -23,27 +48,8 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	mlx_texture_t *current_texture;
 	uint8_t	*pixel;
 
-	float wall_x;
-	if (f->ray->last_cross == 0)
-		wall_x = f->ray->wall_collision.y - floor(f->ray->wall_collision.y);
-	else
-		wall_x = f->ray->wall_collision.x - floor(f->ray->wall_collision.x);
-
-	if (f->ray->last_cross == 0)
-	{
-		if (f->ray->x_sign == 1)
-			current_texture = f->we;
-		else
-			current_texture = f->ea;
-	}
-	else
-	{
-		if (f->ray->y_sign == 1)
-			current_texture = f->no;
-		else
-			current_texture = f->so;
-	}
-	tex_x = wall_x * current_texture->width;
+	current_texture = malloc(sizeof(mlx_texture_t));
+	tex_x = ft_distance(f, &current_texture);
 	top = HEIGHT / 2 - wall / 2;
 	if (top < 0)
 		top = 0;

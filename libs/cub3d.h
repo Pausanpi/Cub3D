@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:03:20 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:22:20 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,17 @@
 # define TRANSPARENT 0x00000000
 /*--------------------------------   STRUCTS   -------------------------------*/
 
+typedef struct s_paint
+{
+	int		top;
+	int		bot;
+	float	tex_x;
+	float	tex_y;
+	float	step;
+	mlx_texture_t *current_texture;
+	uint8_t	*pixel;
+} t_paint;
+
 typedef struct s_rgb
 {
 	uint8_t	r;
@@ -78,13 +89,11 @@ typedef struct s_player
 	mlx_image_t		*line_img;
 	mlx_t			*mlx;
 	int				color;
-	double			mov_speed;
-	double			rot_speed;
 	double			angle; //esta en radianes ya directo. con int podria ser grados ccreo
 	int				size;
 }	t_player;
 
-typedef struct s_collision
+typedef struct s_collision       // NO HACE FALTA HASTA EL BONUS
 {
 	t_coordinate	coordinate;
 	double			hypotenuse;
