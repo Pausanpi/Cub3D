@@ -73,7 +73,7 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 
 	j = 0;
 	p = malloc(sizeof(t_paint));
-	p->current_texture = malloc(sizeof(mlx_texture_t));
+//	p->current_texture = malloc(sizeof(mlx_texture_t));
 	p->tex_x = ft_distance(f, &p->current_texture);
 	p->top = HEIGHT / 2 - wall / 2;
 	if (p->top < 0)
@@ -86,5 +86,6 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	if (p->top == 0)
 		p->tex_y = -(HEIGHT / 2 - wall / 2) * p->step;
 	ft_peint(f, col, p, j);
+	free(p);
 	//hay que liberar la estructura p
 }

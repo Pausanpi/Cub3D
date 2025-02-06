@@ -33,11 +33,7 @@ void	key_hook2(t_data *data)
 void	key_hook(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-	{
-		mlx_delete_image(data->mlx, data->img);
-		mlx_terminate(data->mlx);
-		exit(0);
-	}
+		ft_exit(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
 		data->player->pos->x += cos(data->player->angle) * 0.05;

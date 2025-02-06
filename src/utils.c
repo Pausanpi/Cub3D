@@ -12,35 +12,6 @@
 
 #include "../libs/cub3d.h"
 
-//arreglar
-void	ft_error(int i, t_data *data)
-{
-	ft_putstr_fd("ERROR", 2);
-	free(data->no);
-	free(data->so);
-	free(data->ea);
-	free(data->we);
-	free(data->ceiling);
-	free(data->floor);
-	free(data->player->pos);
-	free(data->player);
-	free(data->ray);
-	exit(i);
-}
-
-void	free_doble(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 void	print_error(char *str)
 {
 	ft_putstr_fd("Error\n", 2);

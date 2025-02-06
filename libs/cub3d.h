@@ -178,13 +178,11 @@ int		parser(t_data *data, char *file);
 int		load_textures(t_data *data, char *textures);
 
 // utils
-void	ft_error(int i, t_data *data);
-void	free_doble(char **str);
 void	print_error(char *str);
 int		save_texture_wall(t_data *data, char **path_text_walls);
 
 // keys
-void		key_hook(t_data *data);
+void	key_hook(t_data *data);
 void	key_hook2(t_data *data);
 
 // draw
@@ -194,5 +192,10 @@ void	ft_paint_walls(t_data *f, float wall, int col);
 void	init_struct(t_data *data);
 void	init_mlx(t_data *data);
 void	ft_init_pos(t_data *data);
+
+// free_willy
+void	ft_error(int i, t_data *data);
+void	ft_exit(t_data *data);
+void	free_doble(char **str);
 
 #endif

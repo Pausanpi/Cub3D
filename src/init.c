@@ -23,18 +23,13 @@ void	init_struct(t_data *data)
 	data->player = malloc(sizeof(t_player));
 	data->player->pos = malloc(sizeof(t_coordinate));
 	data->ray = malloc(sizeof(t_ray));
-	data->no = malloc(sizeof(mlx_texture_t));
-	data->so = malloc(sizeof(mlx_texture_t));
-	data->ea = malloc(sizeof(mlx_texture_t));
-	data->we = malloc(sizeof(mlx_texture_t));
-	if (!data->no || !data->so || !data->ea || !data->we || !data->player
-		|| !data->player->pos || !data->ray)
+	if (!data->player || !data->player->pos || !data->ray)
 		ft_error(1, data);
 }
 
 void	init_mlx(t_data *data)
 {
-	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+//	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "CUBESITO", false);
 	if (!data->mlx)
 		ft_error(MLX_ERROR, data);
