@@ -12,9 +12,10 @@
 
 #include "../libs/cub3d.h"
 
-float ft_distance(t_data *data, mlx_texture_t **current)
+float	ft_distance(t_data *data, mlx_texture_t **current)
 {
-	float wall_x;
+	float	wall_x;
+
 	if (data->ray->last_cross == 0)
 		wall_x = data->ray->wall_collision.y
 			- floor(data->ray->wall_collision.y);
@@ -38,7 +39,7 @@ float ft_distance(t_data *data, mlx_texture_t **current)
 	return (wall_x * (*current)->width);
 }
 
-void ft_peint(t_data *f, int col, t_paint *p, int j)
+void	ft_peint(t_data *f, int col, t_paint *p, int j)
 {
 	int			tex_y_int;
 	uint32_t	color;
