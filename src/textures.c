@@ -140,5 +140,7 @@ int	load_textures(t_data *data, char *textures)
 		return (1);
 	if (color_check(data, text_walls))
 		return (1);
+	free_doble(text_walls);
+	free_doble(path_text_walls);
 	return (0);
 }
