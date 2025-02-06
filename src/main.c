@@ -32,8 +32,6 @@ static void	ft_openwindow(t_data *f)
 {
 	mlx_loop_hook(f->mlx, &ft_hook, f);
 	mlx_loop(f->mlx);
-	mlx_delete_image(f->mlx, f->img);
-	mlx_terminate(f->mlx);
 }
 
 static int	check_extension(char *file)
@@ -62,5 +60,6 @@ int	main(int argc, char **argv)
 	init_mlx(&data);
 	ft_init_pos(&data);
 	ft_openwindow(&data);
+	ft_exit(&data);
 	return (0);
 }
