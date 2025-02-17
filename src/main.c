@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/04 16:55:53 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:45:19 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ static int	check_extension(char *file)
 	return (0);
 }
 
+void	ft_leaks(void)
+{
+	system("leaks -q cub3d");
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	atexit(ft_leaks);
 	if (argc != 2)
 		return (print_error("Invalid number of arguments"), 1);
 	if (check_extension(argv[1]) == 1)
