@@ -33,7 +33,7 @@ void	key_hook2(t_data *data)
 void	key_hook(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-		ft_exit(data);
+		mlx_close_window(data->mlx);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
 		data->player->pos->x += cos(data->player->angle) * 0.05;

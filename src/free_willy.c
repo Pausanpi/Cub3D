@@ -30,7 +30,6 @@ void	ft_error(int i, t_data *data)
 void	ft_exit(t_data *data)
 {
 	mlx_delete_image(data->mlx, data->img);
-	mlx_terminate(data->mlx);
 	mlx_delete_texture(data->no);
 	mlx_delete_texture(data->so);
 	mlx_delete_texture(data->ea);
@@ -41,6 +40,8 @@ void	ft_exit(t_data *data)
 	free(data->player);
 	free(data->ray);
 	free_doble(data->map);
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
 	exit(0);
 }
 

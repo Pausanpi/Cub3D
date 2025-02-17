@@ -122,11 +122,11 @@ int	load_textures(t_data *data, char *textures)
 	char	**path_text_walls;
 
 	text_walls = ft_split(textures, '\n');
-	path_text_walls = malloc(sizeof(char *) * 4);
+	path_text_walls = malloc(sizeof(char *) * 100);
 	i = 0;
 	while (i <= 3)
 	{
-		path_text_walls[i] = malloc(sizeof(char) * 100);
+		path_text_walls[i] = malloc(sizeof(char) * (ft_strlen(text_walls[i])));
 		j = 3;
 		while (text_walls[i][j])
 		{
@@ -136,6 +136,7 @@ int	load_textures(t_data *data, char *textures)
 		path_text_walls[i][j - 3] = '\0';
 		i++;
 	}
+	path_text_walls[i] = 0;
 	if (save_texture_wall(data, path_text_walls))
 		return (1);
 	if (color_check(data, text_walls))

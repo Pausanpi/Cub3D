@@ -87,6 +87,9 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	if (p->top == 0)
 		p->tex_y = -(HEIGHT / 2 - wall / 2) * p->step;
 	ft_peint(f, col, p, j);
+	p->current_texture = 0;
+	p->pixel = 0;
 	free(p);
+	p = 0;
 	//hay que liberar la estructura p
 }

@@ -32,6 +32,7 @@ static void	ft_openwindow(t_data *f)
 {
 	mlx_loop_hook(f->mlx, &ft_hook, f);
 	mlx_loop(f->mlx);
+
 }
 
 static int	check_extension(char *file)
