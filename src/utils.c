@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:27:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/17 10:59:03 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:44:11 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,11 @@ int	save_texture_wall(t_data *data, char **path_text_walls)
 	{
 		if (!path_text_walls[i] || check_ext_wall(path_text_walls[i]))
 			return (print_error("Incorrect path texture"), 1);
-		else if ((ft_strncmp(data->line, "NO", 2)))
-			data->no = mlx_load_png(path_text_walls[0]);
-		else if ((ft_strncmp(data->line, "SO", 2)))
-			data->so = mlx_load_png(path_text_walls[1]);
-		else if ((ft_strncmp(data->line, "EA", 2)))
-			data->ea = mlx_load_png(path_text_walls[2]);
-		else if ((ft_strncmp(data->line, "WE", 2)))
-			data->we = mlx_load_png(path_text_walls[3]);
 		i++;
 	}
+	data->no = mlx_load_png(path_text_walls[0]);
+	data->so = mlx_load_png(path_text_walls[1]);
+	data->ea = mlx_load_png(path_text_walls[2]);
+	data->we = mlx_load_png(path_text_walls[3]);
 	return (0);
 }
