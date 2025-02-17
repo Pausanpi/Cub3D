@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/05 14:44:25 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:58:59 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,21 +84,8 @@ typedef struct s_coordinate
 typedef struct s_player
 {
 	t_coordinate	*pos;
-	t_coordinate	*center;
-	mlx_image_t		*player_img;
-	mlx_image_t		*line_img;
-	mlx_t			*mlx;
-	int				color;
-	double			angle; //esta en radianes ya directo. con int podria ser grados ccreo
-	int				size;
+	double			angle;
 }	t_player;
-
-typedef struct s_collision       // NO HACE FALTA HASTA EL BONUS
-{
-	t_coordinate	coordinate;
-	double			hypotenuse;
-	// eli marca una distancia, que quiza sea pa evitar el ojo de pez
-}	t_collision;
 
 typedef struct s_ray
 {
@@ -106,17 +93,15 @@ typedef struct s_ray
 	double			deltaang;
 	t_coordinate	origin;
 	t_coordinate	dir;
-	double			delta_x; //this is the absolute distance that the ray has to traverse for a collision with the grid.
+	double			delta_x;
 	double			delta_y;
 	double			first_x;
 	double			first_y;
 	double			length;
-	int				x_sign; // initiate at 1 and then if chage to -1 to fix direction
+	int				x_sign;
 	int				y_sign;
-	int				last_cross; //0 si toco x, 1 si toco y. Asi se puede restar el ultimo paso
+	int				last_cross;
 	t_coordinate	wall_collision;
-	int				map_x;
-	int				map_y;
 }	t_ray;
 
 typedef struct s_data
@@ -139,11 +124,6 @@ typedef struct s_data
 	mlx_texture_t	*we;
 	uint32_t		*ceiling;
 	uint32_t		*floor;
-
-	mlx_image_t		*minimap;
-	mlx_image_t		*player_img;
-
-	int			prueba;
 }	t_data;
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
