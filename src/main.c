@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/17 15:45:06 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:39:37 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	ft_hook(void *param)
 	while (i < 1080)
 	{
 		ft_rayete(f, i);
-		ft_paint_walls(f, ((WALL_H * 1) / ((f->ray->length) * (cos(f->ray->angle - f->player->angle)) * 1)), i);
+		ft_paint_walls(f, ((WALL_H * 1) / ((f->ray->length)
+					* (cos(f->ray->angle - f->player->angle)) * 1)), i);
 		i++;
 	}
 }
@@ -32,7 +33,6 @@ static void	ft_openwindow(t_data *f)
 {
 	mlx_loop_hook(f->mlx, &ft_hook, f);
 	mlx_loop(f->mlx);
-
 }
 
 static int	check_extension(char *file)
@@ -42,7 +42,8 @@ static int	check_extension(char *file)
 	i = 0;
 	while (file[i])
 		i++;
-	if (file[i - 1] != 'b' || file[i - 2] != 'u' || file[i - 3] != 'c' || file[i - 4] != '.')
+	if (file[i - 1] != 'b' || file[i - 2] != 'u'
+		|| file[i - 3] != 'c' || file[i - 4] != '.')
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:16:01 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/04 16:23:19 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:38:45 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	init_struct(t_data *data)
 
 void	init_mlx(t_data *data)
 {
-//	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "CUBESITO", false);
 	if (!data->mlx)
 		ft_error(MLX_ERROR, data);

@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:59:08 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 14:27:23 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:38:12 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_bucle(t_data *data, int i, int j)
 
 size_t	ft_electric_bucleloo(t_data *data)
 {
-	int 	i;
+	int		i;
 	size_t	max_l;
 
 	i = -1;

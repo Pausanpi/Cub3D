@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:08:24 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 14:35:06 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:37:02 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 
 	j = 0;
 	p = malloc(sizeof(t_paint));
-//	p->current_texture = malloc(sizeof(mlx_texture_t));
 	p->tex_x = ft_distance(f, &p->current_texture);
 	p->top = HEIGHT / 2 - wall / 2;
 	if (p->top < 0)
@@ -91,5 +90,4 @@ void	ft_paint_walls(t_data *f, float wall, int col)
 	p->pixel = 0;
 	free(p);
 	p = 0;
-	//hay que liberar la estructura p
 }
