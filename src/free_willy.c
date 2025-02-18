@@ -14,7 +14,7 @@
 
 void	ft_error(int i, t_data *data)
 {
-	ft_putstr_fd("ERROR", 2);
+//	ft_putstr_fd("ERROR", 2);
 	ft_exit(data);
 	exit(i);
 }
