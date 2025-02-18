@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/18 11:53:53 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:09:17 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,12 @@ int	load_textures(t_data *data, char *textures)
 	i = -1;
 	while (++i <= 3)
 	{
-		path_walls[i] = malloc(sizeof(char) * (ft_strlen(text_walls[i]) - 2));
+		if (ft_strlen(text_walls[i]) <= 3)
+		{
+			ft_printf("Error\n");
+			exit(1);
+		}
+		path_walls[i] = malloc(sizeof(char) * (ft_strlen(text_walls[i]) - 1));
 		j = 3;
 		while (text_walls[i][j])
 		{

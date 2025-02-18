@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:05:50 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/13 10:40:38 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:19:25 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,28 @@ void	ft_error(int i, t_data *data)
 
 void	ft_exit(t_data *data)
 {
-	mlx_delete_image(data->mlx, data->img);
-	mlx_delete_texture(data->no);
-	mlx_delete_texture(data->so);
-	mlx_delete_texture(data->ea);
-	mlx_delete_texture(data->we);
+	if (data->img && data->mlx)
+		mlx_delete_image(data->mlx, data->img);
+	if (data->no)
+		mlx_delete_texture(data->no);
+	if (data->so)
+		mlx_delete_texture(data->so);
+	if (data->ea)
+		mlx_delete_texture(data->ea);
+	if (data->we)
+		mlx_delete_texture(data->we);
 	free(data->ceiling);
 	free(data->floor);
 	free(data->player->pos);
 	free(data->player);
 	free(data->ray);
-	free_doble(data->map);
-	mlx_close_window(data->mlx);
-	mlx_terminate(data->mlx);
+	if (data->map)
+		free_doble(data->map);
+	if (data->mlx)
+	{
+		mlx_close_window(data->mlx);
+		mlx_terminate(data->mlx);
+	}
 }
 
 void	free_doble(char **str)

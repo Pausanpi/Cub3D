@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:53:38 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/18 11:39:37 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:13:14 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 		return (print_error("Invalid file extension"), 1);
 	init_struct(&data);
 	if (parser(&data, argv[1]) == 1)
-		return (1);
+		ft_error(1, &data);
 	init_mlx(&data);
 	ft_init_pos(&data);
 	ft_openwindow(&data);

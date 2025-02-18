@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:16:01 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/18 11:38:45 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:19:44 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void	init_struct(t_data *data)
 	data->ray = malloc(sizeof(t_ray));
 	if (!data->player || !data->player->pos || !data->ray)
 		ft_error(1, data);
+	data->mlx = 0;
+	data->img = 0;
+	data->no = 0;
+	data->so = 0;
+	data->ea = 0;
+	data->we = 0;
+	data->map = NULL;
 }
 
 void	init_mlx(t_data *data)
