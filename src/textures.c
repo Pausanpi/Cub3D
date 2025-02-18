@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/17 12:22:00 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:53:53 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	color_check(t_data *data, char **text_walls)
 
 /*
 	Separa el texto en líneas con ft_split()
-	Extrae rutas de texturas y las almacena en path_text_walls
+	Extrae rutas de texturas y las almacena en path_walls
 	Usa mlx_load_png() para cargar las texturas en NO, SO, EA y WE
 	Llama a color_check() para procesar los colores del techo y el suelo
 */
@@ -119,29 +119,26 @@ int	load_textures(t_data *data, char *textures)
 	int		i;
 	int		j;
 	char	**text_walls;
-	char	**path_text_walls;
+	char	**path_walls;
 
 	text_walls = ft_split(textures, '\n');
-	path_text_walls = malloc(sizeof(char *) * 5);
-	i = 0;
-	while (i <= 3)
+	path_walls = malloc(sizeof(char *) * 5);
+	i = -1;
+	while (++i <= 3)
 	{
-		path_text_walls[i] = malloc(sizeof(char) * (ft_strlen(text_walls[i]) - 2));
+		path_walls[i] = malloc(sizeof(char) * (ft_strlen(text_walls[i]) - 2));
 		j = 3;
 		while (text_walls[i][j])
 		{
-			path_text_walls[i][j - 3] = text_walls[i][j];
+			path_walls[i][j - 3] = text_walls[i][j];
 			j++;
 		}
-		path_text_walls[i][j - 3] = '\0';
-		i++;
+		path_walls[i][j - 3] = '\0';
 	}
-	path_text_walls[i] = 0;
-	if (save_texture_wall(data, path_text_walls))
-		return (free_doble(path_text_walls), free_doble(text_walls), 1);
+	path_walls[i] = 0;
+	if (save_texture_wall(data, path_walls))
+		return (free_doble(path_walls), free_doble(text_walls), 1);
 	if (color_check(data, text_walls))
-		return (free_doble(path_text_walls), free_doble(text_walls), 1);
-	free_doble(text_walls);
-	free_doble(path_text_walls);
-	return (0);
+		return (free_doble(path_walls), free_doble(text_walls), 1);
+	return (free_doble(text_walls), free_doble(path_walls), 0);
 }
