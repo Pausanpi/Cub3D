@@ -15,15 +15,7 @@
 void	ft_error(int i, t_data *data)
 {
 	ft_putstr_fd("ERROR", 2);
-	free(data->no);
-	free(data->so);
-	free(data->ea);
-	free(data->we);
-	free(data->ceiling);
-	free(data->floor);
-	free(data->player->pos);
-	free(data->player);
-	free(data->ray);
+	ft_exit(data);
 	exit(i);
 }
 
@@ -42,7 +34,6 @@ void	ft_exit(t_data *data)
 	free_doble(data->map);
 	mlx_close_window(data->mlx);
 	mlx_terminate(data->mlx);
-	exit(0);
 }
 
 void	free_doble(char **str)

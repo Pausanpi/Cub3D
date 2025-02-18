@@ -24,14 +24,14 @@ float	ft_distance(t_data *data, mlx_texture_t **current)
 			- floor(data->ray->wall_collision.x);
 	if (data->ray->last_cross == 0)
 	{
-		if (data->ray->x_sign == 1)
+		if (data->ray->x_sign == -1)
 			*current = data->we;
 		else
 			*current = data->ea;
 	}
 	else
 	{
-		if (data->ray->y_sign == 1)
+		if (data->ray->y_sign == -1)
 			*current = data->no;
 		else
 			*current = data->so;
