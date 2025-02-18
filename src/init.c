@@ -32,6 +32,8 @@ void	init_struct(t_data *data)
 	data->ea = 0;
 	data->we = 0;
 	data->map = NULL;
+	data->ceiling = 0;
+	data->floor = 0;
 }
 
 void	init_mlx(t_data *data)
