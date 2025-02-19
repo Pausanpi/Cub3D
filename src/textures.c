@@ -122,7 +122,7 @@ int	load_textures(t_data *data, char *textures)
 	char	**path_walls;
 
 	text_walls = ft_split(textures, '\n');
-	path_walls = malloc(sizeof(char *) * 5);
+	path_walls = malloc(sizeof(char *) * ft_strlen(textures));
 	i = -1;
 	while (++i <= 3)
 	{
@@ -131,7 +131,7 @@ int	load_textures(t_data *data, char *textures)
 			ft_printf("Error\n");
 			exit(1);
 		}
-		path_walls[i] = malloc(sizeof(char) * (ft_strlen(text_walls[i]) - 1));
+		path_walls[i] = malloc(sizeof(char) * (ft_strlen(text_walls[i]) - 2));
 		j = 3;
 		while (text_walls[i][j])
 		{
