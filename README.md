@@ -1,6 +1,5 @@
 <h1>
- <img src="https://media.tenor.com/pPoUmi0Z1fUAAAAi/cat-pet.gif" width="60px">
-  <p>Cub3D</p>
+  <img src="https://media1.tenor.com/m/PY-UvhqJ6OcAAAAd/captain-marvel-goose.gif" width="60px"> Cub3D
 </h1>
 
 <p>
