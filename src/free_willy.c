@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:05:50 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/18 12:19:25 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:11:16 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_error(int i, t_data *data)
 {
-//	ft_putstr_fd("ERROR", 2);
 	ft_exit(data);
 	exit(i);
 }

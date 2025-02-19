@@ -6,11 +6,20 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:27:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/17 15:44:11 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:11:08 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub3d.h"
+
+void	ft_comprb(char **text_walls, int i)
+{
+	if (ft_strlen(text_walls[i]) <= 3)
+	{
+		ft_printf("Error\n");
+		exit(1);
+	}
+}
 
 void	print_error(char *str)
 {
