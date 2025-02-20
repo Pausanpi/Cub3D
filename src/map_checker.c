@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:07 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/05 14:45:22 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:59:35 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	check_map(t_data *data)
 			if (((i == 0 || i == data->height_map) || (j == 0
 						|| j == data->width_map)) && c != '1' && c != ' ')
 				return (print_error("Map not closed"), 1);
-			if (i != 0 && i != data->height_map && (c == 'O' || c == 'N'
+			if (i != 0 && i != data->height_map && (c == '0' || c == 'N'
 					|| c == 'S' || c == 'E' || c == 'W')
 				&& ((data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' ')
 				|| (data->map[i][j - 1] == ' ' || data->map[i][j + 1] == ' ')))

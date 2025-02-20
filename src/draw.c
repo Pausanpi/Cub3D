@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:08:24 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/18 11:37:02 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:02:22 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ float	ft_distance(t_data *data, mlx_texture_t **current)
 	if (data->ray->last_cross == 0)
 	{
 		if (data->ray->x_sign == -1)
-			*current = data->we;
-		else
 			*current = data->ea;
+		else
+			*current = data->we;
 	}
 	else
 	{

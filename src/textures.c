@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/19 11:10:56 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:17:54 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ int	validate_and_assign_colors(uint32_t *color_array, char **rgb)
 		if (!rgb[i])
 			return (print_error("Missing RGB value"), 1);
 		j = -1;
-		if (!ft_isdigit(rgb[i][++j]))
-			return (free(rgb), print_error("Invalid RGB value"), 1);
+		while(rgb[i][++j])
+		{
+			if (!ft_isdigit(rgb[i][j]))
+				return (free(rgb), print_error("Invalid RGB value"), 1);
+		}
 		color_val = ft_atoi(rgb[i]);
 		if (color_val < 0 || color_val > 255)
 		{
@@ -52,11 +55,26 @@ int	validate_and_assign_colors(uint32_t *color_array, char **rgb)
 int	process_color_line(char *line, uint32_t *color_array)
 {
 	int		i;
+	int		j;
+	int		cont;
 	char	**rgb;
 
 	i = 1;
+	j = 0;
+	cont = 0;
 	while (line[i] == ' ')
 		i++;
+	while (line[j])
+	{
+		if (line[j] == '-')
+			cont++;
+		j++;
+	}
+	if (cont != 2)
+	{
+		printf("ERROR COMAS\n");
+		exit(1);
+	}
 	rgb = ft_split(line + i, ',');
 	if (!rgb)
 		return (1);
