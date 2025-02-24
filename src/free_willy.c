@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:05:50 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/19 11:11:16 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:27:45 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,21 @@ void	free_doble(char **str)
 		i++;
 	}
 	free(str);
+}
+
+void	free_triple(char ***str)
+{
+	int	i;
+
+	i = 0;
+	if (*str != NULL)
+	{
+		while ((*str)[i])
+		{
+			free((*str)[i]);
+			(*str)[i] = NULL;
+		}
+		free(*str);
+		*str = NULL;
+	}
 }

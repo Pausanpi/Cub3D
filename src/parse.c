@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/13 10:44:24 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:47:59 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	parser(t_data *data, char *file)
 		return (free(texture), 1);
 	if (load_textures(data, texture))
 		return (free(texture), 1);
-	free(texture);
+	//free(texture);
 	if (!data->no || !data->so || !data->ea || !data->we)
 		return (free(data->line), print_error("Missing textures"), 1);
 	if (!data->ceiling || !data->floor)

@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/19 11:10:36 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:45:35 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ typedef struct s_paint
 	float	tex_y;
 	float	step;
 	mlx_texture_t *current_texture;
-	uint8_t	*pixel;
+	uint8_t		*pixel;
 } t_paint;
 
 typedef struct s_rgb
 {
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
+	int		r;
+	int		g;
+	int		b;
 }	t_rgb;
 
 typedef struct s_coordinate
@@ -122,8 +122,10 @@ typedef struct s_data
 	mlx_texture_t	*so;
 	mlx_texture_t	*ea;
 	mlx_texture_t	*we;
-	uint32_t		*ceiling;
-	uint32_t		*floor;
+	int				*ceiling;
+	int				*floor;
+	char			**floor1;
+	char			**ceiling1;
 }	t_data;
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
@@ -178,5 +180,6 @@ void	ft_init_pos(t_data *data);
 void	ft_error(int i, t_data *data);
 void	ft_exit(t_data *data);
 void	free_doble(char **str);
+void	free_triple(char ***str);
 
 #endif
