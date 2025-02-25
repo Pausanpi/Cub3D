@@ -24,7 +24,7 @@ int	save_textures(t_data *data, char **splt, char **tmp, int i)
 		return (1);
 	if (!ft_strncmp(splt[i], "NO ", 3))
 		data->no = mlx_load_png(*tmp);
-		else if (!ft_strncmp(splt[i], "SO ", 3))
+	else if (!ft_strncmp(splt[i], "SO ", 3))
 		data->so = mlx_load_png(*tmp);
 	else if (!ft_strncmp(splt[i], "WE ", 3))
 		data->we = mlx_load_png(*tmp);
@@ -66,9 +66,9 @@ void	initialize_colors(t_data *data)  //SE QUEDA
 	data->ceiling = malloc(sizeof(uint32_t) * 3);
 	data->floor = malloc(sizeof(uint32_t) * 3);
 	if (!data->ceiling || !data->floor)
-		return ;
+		return ;/* 
 	ft_memset(data->ceiling, 0, sizeof(uint32_t) * 3);
-	ft_memset(data->floor, 0, sizeof(uint32_t) * 3);
+	ft_memset(data->floor, 0, sizeof(uint32_t) * 3); */
 }
 
 
@@ -79,7 +79,7 @@ int	color_check(t_data *d, char *tmp, char *split, int coma)
 	char	**color;
 
 	i = 0;
-	initialize_colors(d);
+	//initialize_colors(d);
 	while (tmp && tmp[i++])
 		if (tmp[i] == ',')
 			coma++;
@@ -90,10 +90,10 @@ int	color_check(t_data *d, char *tmp, char *split, int coma)
 		j = -1;
 		while (color[i][++j])
 			if (!ft_isdigit(color[i][j]))
-				return (free_triple(&color), printf("Error: RGB not digit\n"), 1);
+				return (free_doble(color), printf("Error: RGB not digit\n"), 1);
 		if (ft_atoi(color[i]) > 255 || ft_atoi(color[i]) < 0
 			|| coma != 2)
-			return (free_triple(&color), printf("Error: Wrong RGB\n"), 1);
+			return (free_doble(color), printf("Error: Wrong RGB\n"), 1);
 	}
 	if (ft_strncmp(split, "C ", 2) == 0)
 		d->ceiling1 = color;
@@ -108,10 +108,11 @@ int	load_textures(t_data *data, char *textures)
 	int		j;
 	char	**splt;
 	char	*tmp;
-	
+
 	i = -1;
 	splt = ft_split(textures, '\n');
 	tmp = NULL;
+	initialize_colors(data);
 	while (splt && splt[++i])
 	{
 		j = i;
@@ -127,6 +128,7 @@ int	load_textures(t_data *data, char *textures)
 				&& color_check(data, tmp, splt[i], 0) == 1)
 				return (1);
 		}
+		free(tmp);
 	}
 	data->ceiling[0] = ft_atoi(data->ceiling1[0]);
 	data->ceiling[1] = ft_atoi(data->ceiling1[1]);

@@ -34,6 +34,8 @@ void	init_struct(t_data *data)
 	data->map = NULL;
 	data->ceiling = 0;
 	data->floor = 0;
+	data->ceiling1 = 0;
+	data->floor1 = 0;
 }
 
 void	init_mlx(t_data *data)
@@ -56,4 +58,5 @@ void	ft_init_pos(t_data *data)
 		data->player->angle = 0;
 	else if (data->orientation == 'E')
 		data->player->angle = PI;
+	data->player->angle += 0.01;
 }

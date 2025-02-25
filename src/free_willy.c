@@ -37,6 +37,10 @@ void	ft_exit(t_data *data)
 	free(data->ray);
 	if (data->map)
 		free_doble(data->map);
+	if (data->ceiling1)
+		free_doble(data->ceiling1);
+	if (data->floor1)
+		free_doble(data->floor1);
 	if (data->mlx)
 	{
 		mlx_close_window(data->mlx);
