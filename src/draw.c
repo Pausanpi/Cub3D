@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:08:24 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:46:08 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:31:10 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	ft_distance(t_data *data, mlx_texture_t **current)
 			- floor(data->ray->wall_collision.x);
 	if (data->ray->last_cross == 0)
 	{
-		if (data->ray->x_sign == -1)
+		if (data->ray->x_sign == 1)
 			*current = data->ea;
 		else
 			*current = data->we;

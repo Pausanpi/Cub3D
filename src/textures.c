@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:53:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:48:44 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:36:12 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,6 @@ int	texture_check(t_data *d, char **text)
 	return (close(d->fd), 0);
 }
 
-void	initialize_colors(t_data *data)  //SE QUEDA
-{
-	data->ceiling = malloc(sizeof(uint32_t) * 3);
-	data->floor = malloc(sizeof(uint32_t) * 3);
-	if (!data->ceiling || !data->floor)
-		return ;/* 
-	ft_memset(data->ceiling, 0, sizeof(uint32_t) * 3);
-	ft_memset(data->floor, 0, sizeof(uint32_t) * 3); */
-}
-
-
 int	color_check(t_data *d, char *tmp, char *split, int coma)
 {
 	int		i;
@@ -79,7 +68,6 @@ int	color_check(t_data *d, char *tmp, char *split, int coma)
 	char	**color;
 
 	i = 0;
-	//initialize_colors(d);
 	while (tmp && tmp[i++])
 		if (tmp[i] == ',')
 			coma++;
@@ -102,16 +90,24 @@ int	color_check(t_data *d, char *tmp, char *split, int coma)
 	return (0);
 }
 
-int	load_textures(t_data *data, char *textures)
+void	atoi_color(t_data *data)
 {
-	int		i;
-	int		j;
-	char	**splt;
+	data->ceiling[0] = ft_atoi(data->ceiling1[0]);
+	data->ceiling[1] = ft_atoi(data->ceiling1[1]);
+	data->ceiling[2] = ft_atoi(data->ceiling1[2]);
+	data->floor[0] = ft_atoi(data->floor1[0]);
+	data->floor[1] = ft_atoi(data->floor1[1]);
+	data->floor[2] = ft_atoi(data->floor1[2]);
+}
+
+int	load_textures(t_data *data, char *textures, int i, int j)
+{
 	char	*tmp;
+	char	**splt;
 
 	i = -1;
-	splt = ft_split(textures, '\n');
 	tmp = NULL;
+	splt = ft_split(textures, '\n');
 	initialize_colors(data);
 	while (splt && splt[++i])
 	{
@@ -130,11 +126,5 @@ int	load_textures(t_data *data, char *textures)
 		}
 		free(tmp);
 	}
-	data->ceiling[0] = ft_atoi(data->ceiling1[0]);
-	data->ceiling[1] = ft_atoi(data->ceiling1[1]);
-	data->ceiling[2] = ft_atoi(data->ceiling1[2]);
-	data->floor[0] = ft_atoi(data->floor1[0]);
-	data->floor[1] = ft_atoi(data->floor1[1]);
-	data->floor[2] = ft_atoi(data->floor1[2]);
-	return (free_doble(splt), free(textures), 0);
+	return (atoi_color(data), free_doble(splt), free(textures), 0);
 }

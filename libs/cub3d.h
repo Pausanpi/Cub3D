@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/24 17:45:35 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:36:34 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int		check_textures(t_data *data, char **texture);
 int		parser(t_data *data, char *file);
 
 // textures
-int		load_textures(t_data *data, char *textures);
+int	load_textures(t_data *data, char *textures, int i, int j);
 
 // utils
 void 	ft_comprb(char **text_walls, int i);
@@ -175,6 +175,7 @@ void	ft_paint_walls(t_data *f, float wall, int col);
 void	init_struct(t_data *data);
 void	init_mlx(t_data *data);
 void	ft_init_pos(t_data *data);
+void	initialize_colors(t_data *data);
 
 // free_willy
 void	ft_error(int i, t_data *data);

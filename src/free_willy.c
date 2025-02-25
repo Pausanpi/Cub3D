@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:05:50 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/24 11:27:45 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:33:53 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@ void	ft_error(int i, t_data *data)
 {
 	ft_exit(data);
 	exit(i);
+}
+
+void	ft_exit2(t_data *data)
+{
+	free(data->ceiling);
+	free(data->floor);
+	free(data->player->pos);
+	free(data->player);
+	free(data->ray);
+	if (data->map)
+		free_doble(data->map);
+	if (data->ceiling1)
+		free_doble(data->ceiling1);
+	if (data->floor1)
+		free_doble(data->floor1);
 }
 
 void	ft_exit(t_data *data)
@@ -30,17 +45,7 @@ void	ft_exit(t_data *data)
 		mlx_delete_texture(data->ea);
 	if (data->we)
 		mlx_delete_texture(data->we);
-	free(data->ceiling);
-	free(data->floor);
-	free(data->player->pos);
-	free(data->player);
-	free(data->ray);
-	if (data->map)
-		free_doble(data->map);
-	if (data->ceiling1)
-		free_doble(data->ceiling1);
-	if (data->floor1)
-		free_doble(data->floor1);
+	ft_exit2(data);
 	if (data->mlx)
 	{
 		mlx_close_window(data->mlx);
