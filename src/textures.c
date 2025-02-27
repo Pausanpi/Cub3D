@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:53:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:43:51 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:10:34 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,33 +90,23 @@ int	color_check(t_data *d, char *tmp, char *split, int coma)
 	return (0);
 }
 
-void	atoi_color(t_data *d)
+int	verify_and_save_textures(t_data *data, char **s, char **tmp, int i)
 {
-	if (d->ceiling1 && d->ceiling1[0] && d->ceiling1[1] && d->ceiling1[2])
-	{
-		d->ceiling[0] = ft_atoi(d->ceiling1[0]);
-		d->ceiling[1] = ft_atoi(d->ceiling1[1]);
-		d->ceiling[2] = ft_atoi(d->ceiling1[2]);
-	}
-	else
-	{
-		free(d->ceiling);
-		d->ceiling = NULL;
-	}
-	if (d->floor1 && d->floor1[0] && d->floor1[1] && d->floor1[2])
-	{
-		d->floor[0] = ft_atoi(d->floor1[0]);
-		d->floor[1] = ft_atoi(d->floor1[1]);
-		d->floor[2] = ft_atoi(d->floor1[2]);
-	}
-	else
-	{
-		free(d->floor);
-		d->floor = NULL;
-	}
+	int	j;
+
+	j = i;
+	while (s[++j])
+		if (!ft_strncmp(s[i], s[j], 2))
+			return (free_doble(s), print_error("Duplicated textures"), 1);
+	if (save_textures(data, s, tmp, i))
+		return (free_triple(&s), free(*tmp), 1);
+	if ((!ft_strncmp(s[i], "C ", 2) || !ft_strncmp(s[i], "F ", 2))
+		&& color_check(data, *tmp, s[i], 0) == 1)
+		return (free_doble(s), free(*tmp), 1);
+	return (0);
 }
 
-int	load_textures(t_data *data, char *textures, int i, int j)
+int	load_textures(t_data *data, char *textures, int i)
 {
 	char	*tmp;
 	char	**s;
@@ -126,18 +116,10 @@ int	load_textures(t_data *data, char *textures, int i, int j)
 	s = ft_split(textures, '\n');
 	if (!s)
 		return (free(textures), free(data->line), 1);
-	while (s && s[++i])
+	while (s[++i])
 	{
-		j = i;
-		while (s[++j])
-			if (!ft_strncmp(s[i], s[j], 2))
-				return (free_doble(s), free(textures), free(data->line),
-					print_error("Duplicated textures"), 1);
-		if (s[i])
-			if ((save_textures(data, s, &tmp, i))
-				|| ((!ft_strncmp(s[i], "C ", 2) || !ft_strncmp(s[i], "F ", 2))
-					&& color_check(data, tmp, s[i], 0) == 1))
-				return (free_triple(&s), free(tmp), free(textures), 1);
+		if (verify_and_save_textures(data, s, &tmp, i))
+			return (free(textures), 1);
 		free(tmp);
 	}
 	if (data->ceiling1 && data->floor1)

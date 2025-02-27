@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/27 15:55:30 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:09:23 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,12 +146,13 @@ int		check_textures(t_data *data, char **texture);
 int		parser(t_data *data, char *file);
 
 // textures
-int		load_textures(t_data *data, char *textures, int i, int j);
+int		load_textures(t_data *data, char *textures, int i);
 
 // utils
 void	ft_comprb(char **text_walls, int i);
 void	print_error(char *str);
 int		save_texture_wall(t_data *data, char **path_text_walls);
+void	atoi_color(t_data *d);
 
 // keys
 void	key_hook(t_data *data);

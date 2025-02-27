@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:27:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/19 11:11:08 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:09:13 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,30 @@ int	save_texture_wall(t_data *data, char **path_text_walls)
 	data->ea = mlx_load_png(path_text_walls[2]);
 	data->we = mlx_load_png(path_text_walls[3]);
 	return (0);
+}
+
+void	atoi_color(t_data *d)
+{
+	if (d->ceiling1 && d->ceiling1[0] && d->ceiling1[1] && d->ceiling1[2])
+	{
+		d->ceiling[0] = ft_atoi(d->ceiling1[0]);
+		d->ceiling[1] = ft_atoi(d->ceiling1[1]);
+		d->ceiling[2] = ft_atoi(d->ceiling1[2]);
+	}
+	else
+	{
+		free(d->ceiling);
+		d->ceiling = NULL;
+	}
+	if (d->floor1 && d->floor1[0] && d->floor1[1] && d->floor1[2])
+	{
+		d->floor[0] = ft_atoi(d->floor1[0]);
+		d->floor[1] = ft_atoi(d->floor1[1]);
+		d->floor[2] = ft_atoi(d->floor1[2]);
+	}
+	else
+	{
+		free(d->floor);
+		d->floor = NULL;
+	}
 }
