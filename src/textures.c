@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:53:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/27 14:44:05 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:43:51 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	atoi_color(t_data *d)
 		free(d->ceiling);
 		d->ceiling = NULL;
 	}
-	
 	if (d->floor1 && d->floor1[0] && d->floor1[1] && d->floor1[2])
 	{
 		d->floor[0] = ft_atoi(d->floor1[0]);
@@ -120,32 +119,28 @@ void	atoi_color(t_data *d)
 int	load_textures(t_data *data, char *textures, int i, int j)
 {
 	char	*tmp;
-	char	**splt;
+	char	**s;
 
 	i = -1;
 	tmp = NULL;
-	splt = ft_split(textures, '\n');
-	if (!splt)
+	s = ft_split(textures, '\n');
+	if (!s)
 		return (free(textures), free(data->line), 1);
-	while (splt && splt[++i])
+	while (s && s[++i])
 	{
 		j = i;
-		while (splt[++j])
-			if (!ft_strncmp(splt[i], splt[j], 2))
-				return (free_doble(splt), free(textures), free(data->line),
+		while (s[++j])
+			if (!ft_strncmp(s[i], s[j], 2))
+				return (free_doble(s), free(textures), free(data->line),
 					print_error("Duplicated textures"), 1);
-		if (splt[i])
-		{
-			if (save_textures(data, splt, &tmp, i))
-				return (free_triple(&splt), free(tmp), free(textures), 1);
-			if ((!ft_strncmp(splt[i], "C ", 2) || !ft_strncmp(splt[i], "F ", 2))
-			&& color_check(data, tmp, splt[i], 0) == 1)
-				return (free_doble(splt), free(tmp), free(textures), 1);
-		}
+		if (s[i])
+			if ((save_textures(data, s, &tmp, i))
+				|| ((!ft_strncmp(s[i], "C ", 2) || !ft_strncmp(s[i], "F ", 2))
+					&& color_check(data, tmp, s[i], 0) == 1))
+				return (free_triple(&s), free(tmp), free(textures), 1);
 		free(tmp);
 	}
 	if (data->ceiling1 && data->floor1)
 		initialize_colors(data);
-		
-	return (atoi_color(data), free_doble(splt), free(textures), 0);
+	return (atoi_color(data), free_doble(s), free(textures), 0);
 }

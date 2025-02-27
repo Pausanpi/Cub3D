@@ -2,7 +2,7 @@ NO textures/north.png
 F 57,171,86
 
 EA textures/east.png
-EA textures/east.png
+WE textures/east.png
 
 C 1,2,1
 SO textures/south.png
