@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/25 13:07:00 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:01:21 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,11 @@ int	check_textures(t_data *data, char **texture)
 				|| ft_strncmp(data->line, "WE", 2)
 				|| ft_strncmp(data->line, "EA", 2)) && (data->line[2] == ' '
 				|| (data->line[2] >= 9 && data->line[3] <= 13)))
-		{
 			gnl_texture(data, texture);
-			data->texture_count++;
-		}
 		else if ((ft_strncmp(data->line, "F", 1)
 				|| ft_strncmp(data->line, "C", 1)) && (data->line[1] == ' '
 				|| (data->line[1] >= 9 && data->line[2] <= 13)))
-		{
 			gnl_texture(data, texture);
-			data->texture_count++;	
-		}
 		free(data->line);
 		data->line = get_next_line(data->fd);
 		if (data->line && data->line[0] >= 9 && data->line[0] <= 13)
