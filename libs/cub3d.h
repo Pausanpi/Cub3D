@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/27 14:41:53 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:55:30 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,18 @@
 /*MARGEN DE ERROR*/
 # define EPSILON 0.3 //no era el margen de error, si yo sabia
 
-
-
-
-
-# define BLACK 0x000000ff
-# define WHITE 0xffffffff
-# define RED 0xff0000ff
-# define GRAY 0x808080ff
-# define BLUE 0x0000ffff
-# define PINK 0xF8A4A7ff
-# define TRANSPARENT 0x00000000
 /*--------------------------------   STRUCTS   -------------------------------*/
 
 typedef struct s_paint
 {
-	int		top;
-	int		bot;
-	float	tex_x;
-	float	tex_y;
-	float	step;
-	mlx_texture_t *current_texture;
-	uint8_t		*pixel;
-} t_paint;
+	int				top;
+	int				bot;
+	float			tex_x;
+	float			tex_y;
+	float			step;
+	mlx_texture_t	*current_texture;
+	uint8_t			*pixel;
+}	t_paint;
 
 typedef struct s_rgb
 {
@@ -77,8 +66,8 @@ typedef struct s_rgb
 
 typedef struct s_coordinate
 {
-	double	x; //como lo calculo esto ser'ia la magnitud del rayo por undiad de x
-	double	y; //lo mismo con y
+	double	x;
+	double	y;
 }	t_coordinate;
 
 typedef struct s_player
@@ -157,10 +146,10 @@ int		check_textures(t_data *data, char **texture);
 int		parser(t_data *data, char *file);
 
 // textures
-int	load_textures(t_data *data, char *textures, int i, int j);
+int		load_textures(t_data *data, char *textures, int i, int j);
 
 // utils
-void 	ft_comprb(char **text_walls, int i);
+void	ft_comprb(char **text_walls, int i);
 void	print_error(char *str);
 int		save_texture_wall(t_data *data, char **path_text_walls);
 

@@ -6,13 +6,13 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:50:34 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:54:00 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub3d.h"
 
-void	ifs(t_data *d, char **texture)
+static void	ifs(t_data *d, char **texture)
 {
 	if (d->line[0] == '\n')
 		d->line[0] = '\n';
