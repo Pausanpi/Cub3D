@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:16:01 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/25 11:35:13 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:43:23 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	ft_init_pos(t_data *data)
 
 void	initialize_colors(t_data *data)
 {
-	data->ceiling = malloc(sizeof(uint32_t) * 3);
-	data->floor = malloc(sizeof(uint32_t) * 3);
+	data->ceiling = malloc(sizeof(int) * 3);
+	data->floor = malloc(sizeof(int) * 3);
 	if (!data->ceiling || !data->floor)
 		return ;
 }

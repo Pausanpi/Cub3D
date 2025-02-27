@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:33:38 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/27 12:42:55 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:48:04 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int		check_textures(t_data *data, char **texture);
 int		parser(t_data *data, char *file);
 
 // textures
-int	load_textures(t_data *data, char *textures, int i, int j);
+int	load_textures(t_data *data, char *textures, int i);
 
 // utils
 void 	ft_comprb(char **text_walls, int i);

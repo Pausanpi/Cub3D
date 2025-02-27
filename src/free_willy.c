@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:05:50 by lcuevas-          #+#    #+#             */
-/*   Updated: 2025/02/25 11:33:53 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:35:46 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,15 @@ void	ft_error(int i, t_data *data)
 
 void	ft_exit2(t_data *data)
 {
-	free(data->ceiling);
-	free(data->floor);
+	if (data->ceiling)
+	{
+		free(data->ceiling);
+	}
+	if (data->floor)
+	{
+		free(data->floor);
+		data->floor = NULL;
+	}
 	free(data->player->pos);
 	free(data->player);
 	free(data->ray);
