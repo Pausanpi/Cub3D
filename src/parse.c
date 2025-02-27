@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:48:18 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/27 12:15:07 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:47:54 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 int	check_textures(t_data *data, char **texture)
 {
-	while (data->line && data->line[0] != '1' && data->line[0] != ' ' && data->line[0] != '\n')
+	while (data->line && data->line[0] != '1' && data->line[0] != ' ')
 	{
-		if ((ft_strncmp(data->line, "NO", 2) || ft_strncmp(data->line, "SO", 2)
-				|| ft_strncmp(data->line, "WE", 2)
-				|| ft_strncmp(data->line, "EA", 2)) && (data->line[2] == ' '
-				|| (data->line[2] >= 9 && data->line[3] <= 13)))
+		if (data->line[0] == '\n')
+		{
+			
+		}
+		else if ((ft_strncmp(data->line, "NO", 2) || ft_strncmp(data->line, "SO", 2)
+		|| ft_strncmp(data->line, "WE", 2)
+		|| ft_strncmp(data->line, "EA", 2)) && (data->line[2] == ' '
+			|| (data->line[2] >= 9 && data->line[3] <= 13)))
 			gnl_texture(data, texture);
 		else if ((ft_strncmp(data->line, "F", 1)
-				|| ft_strncmp(data->line, "C", 1)) && (data->line[1] == ' '
-				|| (data->line[1] >= 9 && data->line[2] <= 13)))
+		|| ft_strncmp(data->line, "C", 1)) && (data->line[1] == ' '
+			|| (data->line[1] >= 9 && data->line[2] <= 13)))
 			gnl_texture(data, texture);
 		else if (data->line)
-				data->texture_count++;
+			data->texture_count++;
 		free(data->line);
 		data->line = get_next_line(data->fd);
 		if (data->line && data->line[0] >= 9 && data->line[0] <= 13)
@@ -38,7 +42,7 @@ int	check_textures(t_data *data, char **texture)
 	if (data->texture_count < 6)
 		return (free(data->line),
 			print_error("Missing textures"), 1);
-	if (data->texture_count > 6)
+	else if (data->texture_count > 6)
 		return (free(data->line),
 			print_error("Extra textures"), 1);
 	if (save_map(data))

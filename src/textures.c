@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:53:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/25 11:36:12 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:00:19 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int	color_check(t_data *d, char *tmp, char *split, int coma)
 		j = -1;
 		while (color[i][++j])
 			if (!ft_isdigit(color[i][j]))
-				return (free_doble(color), printf("Error: RGB not digit\n"), 1);
+				return (free_doble(color), print_error("RGB not digit"), 1);
 		if (ft_atoi(color[i]) > 255 || ft_atoi(color[i]) < 0
 			|| coma != 2)
-			return (free_doble(color), printf("Error: Wrong RGB\n"), 1);
+			return (free_doble(color), print_error("Wrong RGB"), 1);
 	}
 	if (ft_strncmp(split, "C ", 2) == 0)
 		d->ceiling1 = color;
@@ -122,7 +122,7 @@ int	load_textures(t_data *data, char *textures, int i, int j)
 				return (free_triple(&splt), free(tmp), free(textures), 1);
 			if ((!ft_strncmp(splt[i], "C ", 2) || !ft_strncmp(splt[i], "F ", 2))
 				&& color_check(data, tmp, splt[i], 0) == 1)
-				return (1);
+				return (free_doble(splt), free(tmp), free(textures), 1);
 		}
 		free(tmp);
 	}
