@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:53:25 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/27 13:47:47 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:44:05 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	atoi_color(t_data *d)
 	}
 }
 
-int	load_textures(t_data *data, char *textures, int i)
+int	load_textures(t_data *data, char *textures, int i, int j)
 {
 	char	*tmp;
 	char	**splt;
@@ -129,13 +129,18 @@ int	load_textures(t_data *data, char *textures, int i)
 		return (free(textures), free(data->line), 1);
 	while (splt && splt[++i])
 	{
+		j = i;
+		while (splt[++j])
+			if (!ft_strncmp(splt[i], splt[j], 2))
+				return (free_doble(splt), free(textures), free(data->line),
+					print_error("Duplicated textures"), 1);
 		if (splt[i])
 		{
 			if (save_textures(data, splt, &tmp, i))
-			return (free_triple(&splt), free(tmp), free(textures), 1);
+				return (free_triple(&splt), free(tmp), free(textures), 1);
 			if ((!ft_strncmp(splt[i], "C ", 2) || !ft_strncmp(splt[i], "F ", 2))
 			&& color_check(data, tmp, splt[i], 0) == 1)
-			return (free_doble(splt), free(tmp), free(textures), 1);
+				return (free_doble(splt), free(tmp), free(textures), 1);
 		}
 		free(tmp);
 	}
