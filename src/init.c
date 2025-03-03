@@ -6,7 +6,7 @@
 /*   By: pausanch <pausanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:16:01 by pausanch          #+#    #+#             */
-/*   Updated: 2025/02/27 13:43:23 by pausanch         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:16:50 by pausanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	ft_init_pos(t_data *data)
 		data->player->angle = 3 * PI / 2;
 	else if (data->orientation == 'S')
 		data->player->angle = PI / 2;
-	else if (data->orientation == 'W')
-		data->player->angle = 0;
 	else if (data->orientation == 'E')
+		data->player->angle = 0;
+	else if (data->orientation == 'W')
 		data->player->angle = PI;
 	data->player->angle += 0.01;
 }
