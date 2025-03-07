@@ -6,6 +6,13 @@
   This project is inspired by the world-famous eponymous 90's game, which was the first FPS ever. It will enable you to explore ray-casting. Your goal will be to make a dynamic view inside a maze, in which you'll have to find your way.
 </p>
 
+<h3>Description</h3>
+The goal of the project is to display a dynamic view inside a maze, with the ability to traverse the maze.
+
+The input is a .cub file that contains the following customisable map specifications: wall textures for all directions, sprite texture(s), floor and ceiling colours/textures, and lastly, the map.
+
+The map will be denoted as follows: 1 for wall, 0 for floor, space for void, N/S/E/W for spawn position and orientation.
+
 <h3>Project Tree</h3>
 
 ```
